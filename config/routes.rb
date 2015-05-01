@@ -6,6 +6,8 @@ BreadExpress::Application.routes.draw do
   resources :orders
   resources :items
 
+  resources :users # Do I need this?
+
   
   # Authentication routes
   get 'signup', to: 'users#new', as: :signup
