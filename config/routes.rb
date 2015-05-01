@@ -1,17 +1,18 @@
 BreadExpress::Application.routes.draw do
 
-  get "login", to: 'sessions#new', as: :login
-  post "sessions", to: 'sessions#create'
-  get "logout", to: 'sessions#destroy', as: :logout
-  
   # Routes for main resources
   resources :addresses
   resources :customers
   resources :orders
+  resources :items
 
   
   # Authentication routes
+  get 'signup', to: 'users#new', as: :signup
 
+  get "login", to: 'sessions#new', as: :login
+  post "sessions", to: 'sessions#create'
+  get "logout", to: 'sessions#destroy', as: :logout
 
 
   # Semi-static page routes
