@@ -18,7 +18,8 @@ BreadExpress::Application.routes.draw do
 
 
   # Cart routes
-  post 'users/add_item_to_cart_wrapper', as: :add_item_to_cart
+  get 'cart', to: 'shopping#cart', as: :cart
+  post 'shopping/add_item_to_cart_wrapper', as: :add_item_to_cart
 
   # Semi-static page routes
   get 'home' => 'home#home', as: :home
