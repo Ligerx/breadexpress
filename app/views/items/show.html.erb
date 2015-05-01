@@ -1,2 +1,10 @@
 <h1>Items#show</h1>
 <p>Find me in app/views/items/show.html.erb</p>
+<%= @item.attributes %>
+
+<div class="small-6 columns">
+  <%= render {partial: 'partials/item_image', item: @item} %>
+</div>
+<div class="small-6 columns">
+  <%= render 'item_info', item: @item %>
+</div>

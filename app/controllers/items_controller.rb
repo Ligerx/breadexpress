@@ -3,6 +3,13 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
+
+    # For admin, show price history
+    @prices = @item.item_prices
+
+    # For everyone else, show similar products
+    @similar_items = Item.for_category(@item.category)
   end
 
   def new
