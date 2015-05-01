@@ -8,6 +8,9 @@ class Item < ActiveRecord::Base
   has_many :item_prices
   has_many :orders, through: :order_items
 
+  # mount carrierwave uploader
+  mount_uploader :picture, PictureUploader
+
   # Scopes
   scope :alphabetical, -> { order(:name) }
   scope :active,       -> { where(active: true) }

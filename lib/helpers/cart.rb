@@ -17,13 +17,16 @@ module BreadExpressHelpers
       session[:cart] = nil
     end
 
-    def add_item_to_cart(item_id)
+    def add_item_to_cart(item_id, quantity = 1)
+      create_cart if session[:cart].nil? # create cart
+
+      # Edited method to take a quantity instead of just 1
       if session[:cart].keys.include?(item_id)
         # if item in cart, increment quantity by 1
-        session[:cart][item_id] += 1
+        session[:cart][item_id] += quantity
       else
         # add it to the cart
-        session[:cart][item_id] = 1
+        session[:cart][item_id] = quantity
       end
     end
 

@@ -1,4 +1,12 @@
-<h2>
-  <b><%= item.name.upcase %></b>
-  <small><%= item.category %></small>
-</h2>
+<h1><b><%= item.name.upcase %></b></h1>
+<p><%= item.category %><p>
+<p><%= number_to_currency(item.item_prices.current.first.price) %></p>
+<p><%= pluralize(item.units_per_item, 'unit') %> per item</p>
+
+<%= simple_form_for CartItem.new, 
+    url: add_item_to_cart_url,
+    method: 'post' do |f| %>
+  <%= f.input :item, as: :hidden, input_html: { value: item.id } %>
+  <%= f.input :quantity %>
+  <%= f.button :submit, value: 'Add to Cart' %>
+<% end %>

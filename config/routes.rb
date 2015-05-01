@@ -17,6 +17,9 @@ BreadExpress::Application.routes.draw do
   get "logout", to: 'sessions#destroy', as: :logout
 
 
+  # Cart routes
+  post 'users/add_item_to_cart_wrapper', as: :add_item_to_cart
+
   # Semi-static page routes
   get 'home' => 'home#home', as: :home
   get 'about' => 'home#about', as: :about
