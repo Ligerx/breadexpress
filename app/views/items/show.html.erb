@@ -11,6 +11,6 @@
   <% if current_user && current_user.role?(:admin) %>
     <%= render partial: 'item_price_history', locals: { item: @item, new_price: @new_price } %>
   <% else %>
-    <%= render 'similar_products', category: @item.category %>
+    <%= render 'similar_products', similar_items: @similar_items %>
   <% end %>
 </div>
