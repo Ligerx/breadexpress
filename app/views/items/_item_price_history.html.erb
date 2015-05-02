@@ -1,0 +1,35 @@
+<div class="small-10 columns small-centered">
+  <div class="small-4 columns">
+    <h3>Price History</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Price</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% item.item_prices.chronological.each do |price| %>
+          <tr>
+            <td><%= number_to_currency price.price %></td>
+            <td><%= print_date price.start_date %></td>
+            <td><%= print_date price.end_date %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="small-4 columns end">
+    <%= simple_form_for new_price, 
+        url: item_path(item), 
+        method: 'patch' do |f| %>
+      <%= f.input :item_id, as: :hidden, input_html: { value: item.id } %>
+      <%= f.input :start_date, as: :hidden, input_html: { value: Date.current } %>
+      <%= f.input :price, label: 'Item Price', input_html: { placeholder: '$0.00'} %>
+      <%= f.button :submit, value: 'Change item price' %>
+    <% end %>
+  </div>
+</div>

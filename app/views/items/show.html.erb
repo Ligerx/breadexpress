@@ -1,9 +1,16 @@
-<h1>Items#show</h1>
-<p>Find me in app/views/items/show.html.erb</p>
-
-<div class="small-6 columns">
-  <%= render partial: 'partials/item_image', locals: {item: @item} %>
+<div class="row">  
+  <div class="small-6 columns">
+    <%= render partial: 'partials/item_image', locals: {item: @item} %>
+  </div>
+  <div class="small-6 columns">
+    <%= render partial: 'item_info', locals: { item: @item } %>
+  </div>
 </div>
-<div class="small-6 columns">
-  <%= render partial: 'item_info', locals: { item: @item } %>
+
+<div class="row">
+  <% if current_user && current_user.role?(:admin) %>
+    <%= render partial: 'item_price_history', locals: { item: @item, new_price: @new_price } %>
+  <% else %>
+    <%= render 'similar_products', category: @item.category %>
+  <% end %>
 </div>

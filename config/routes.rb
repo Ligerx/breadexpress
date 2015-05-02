@@ -21,6 +21,9 @@ BreadExpress::Application.routes.draw do
   get 'cart', to: 'shopping#cart', as: :cart
   post 'shopping/add_item_to_cart_wrapper', as: :add_item_to_cart
 
+  # Add new item price
+  # post 'items/price', to: 'items#update_item_price', as: :new_price
+
   # Semi-static page routes
   get 'home' => 'home#home', as: :home
   get 'about' => 'home#about', as: :about

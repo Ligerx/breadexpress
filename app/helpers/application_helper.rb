@@ -7,4 +7,11 @@ module ApplicationHelper
     end
     addresses.map{|addr| ["#{addr.recipient} : #{addr.street_1}", addr.id] }
   end
+
+
+  def print_date(date)
+  	return '--------' if date.nil?
+
+    date.strftime "%-m/%-d/%Y"
+  end
 end
