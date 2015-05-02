@@ -1,0 +1,17 @@
+<ul class="right">
+  <% if !logged_in? %>
+    <li><%= link_to "Login", new_login_path %></li>
+    <li><%= link_to "Create Account", signup_path %></li>
+    
+  <% else %>
+
+    <% if current_user.role? :customer %>
+      <li><%= link_to "#{current_user.customer.proper_name}'s Account", customer_path(current_user.customer) %></li>
+    <% else %>
+      <li><%= link_to "Logged in as #{current_user.role.capitalize}", '#' %></li>
+    <% end %>
+
+    <li><%= link_to "Log out", logout_path %></li>
+
+  <% end %>
+</ul>

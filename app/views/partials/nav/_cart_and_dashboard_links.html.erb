@@ -1,0 +1,17 @@
+<ul class="right">
+  <% if !logged_in? %>
+    <li><%= link_to 'Login to access your cart', login_path %></li>
+
+  <% elsif current_user.role? :baker %>
+    <li><%= link_to 'Baking List', '#' %></li>
+
+  <% elsif current_user.role? :shipper %>
+    <li><%= link_to 'Shipping List', '#' %></li>
+
+  <% else %>
+    <% if current_user.role? :admin %>
+      <li><%= link_to 'Admin Dashboard', '#' %></li>
+    <% end %>
+    <li><%= link_to "Cart(#{cart_size})", cart_path %></li>
+  <% end %>
+</ul>

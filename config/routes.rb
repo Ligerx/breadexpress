@@ -12,8 +12,8 @@ BreadExpress::Application.routes.draw do
   # Authentication routes
   get 'signup', to: 'users#new', as: :signup
 
-  get "login", to: 'sessions#new', as: :login
-  post "sessions", to: 'sessions#create'
+  get "login", to: 'sessions#new', as: :new_login
+  post "login", to: 'sessions#create', as: :login
   get "logout", to: 'sessions#destroy', as: :logout
 
 
