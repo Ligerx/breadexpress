@@ -23,9 +23,9 @@ BreadExpress::Application.routes.draw do
 
 
   # Item routes
-  get 'bread', to: 'items#index', defaults: { type: 'bread' }
-  get 'muffins', to: 'items#index', defaults: { type: 'muffins' }
-  get 'pastries', to: 'items#index', defaults: { type: 'pastries' }
+  get 'bread', to: 'items#index', defaults: { type: 'bread' }, as: :bread
+  get 'muffins', to: 'items#index', defaults: { type: 'muffins' }, as: :muffins
+  get 'pastries', to: 'items#index', defaults: { type: 'pastries' }, as: :pastries
 
 
   # Semi-static page routes

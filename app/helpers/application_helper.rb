@@ -14,4 +14,12 @@ module ApplicationHelper
 
     date.strftime "%-m/%-d/%Y"
   end
+
+  def cart_size
+    return 0 if session[:cart].nil?
+
+    total = 0
+    session[:cart].each { |k,v| total += v.to_i }
+    return total
+  end
 end
