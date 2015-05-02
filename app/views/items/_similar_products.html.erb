@@ -1,6 +1,10 @@
 <div class="small-12 columns">
   <% similar_items.each_with_index do |item, index| %>
     <% break if index > 3 %>
-    <%= render partial: 'item_block', locals: { item: item } %>
+
+    <div class="small-3 columns">
+      <%= render partial: 'item_block', locals: { item: item } %>
+    </div>
+    
   <% end %>
 </div>

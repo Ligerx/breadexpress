@@ -1,2 +1,14 @@
-<h1>Items#index</h1>
-<p>Find me in app/views/items/index.html.erb</p>
+<h2><%= @type.nil? ? 'All Items' : @type.capitalize %></h2>
+
+<div class="row">
+  <% @items.each_with_index do |item, index| %>
+    <% if index == @items.size - 1 %>
+      <div class="small-4 columns end">
+    <% else %>
+      <div class="small-4 columns">
+    <% end %>
+
+      <%= render partial: 'item_block', locals: { item: item } %>
+    </div>
+  <% end %>
+</div>

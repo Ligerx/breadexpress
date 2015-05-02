@@ -1,5 +1,14 @@
 class ItemsController < ApplicationController
   def index
+    # Put inactive items last?
+    @items = Item.order(:active)
+
+    # Only admins see inactive items
+    @items = @items.active if (!logged_in? || (logged_in? && !current_user.role?(:admin)))
+    # Filter by category if given a typ
+    @items = @items.for_category(params[:type]) if params[:type]
+
+    @type = params[:type]
   end
 
   def show

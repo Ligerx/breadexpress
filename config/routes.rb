@@ -21,8 +21,12 @@ BreadExpress::Application.routes.draw do
   get 'cart', to: 'shopping#cart', as: :cart
   post 'shopping/add_item_to_cart_wrapper', as: :add_item_to_cart
 
-  # Add new item price
-  # post 'items/price', to: 'items#update_item_price', as: :new_price
+
+  # Item routes
+  get 'bread', to: 'items#index', defaults: { type: 'bread' }
+  get 'muffins', to: 'items#index', defaults: { type: 'muffins' }
+  get 'pastries', to: 'items#index', defaults: { type: 'pastries' }
+
 
   # Semi-static page routes
   get 'home' => 'home#home', as: :home
