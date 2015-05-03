@@ -1,1 +1,12 @@
-<h1>User new</h1>
+<%= simple_nested_form_for @user do |user_form| %>
+  <%= user_form.input :first_name %>
+  <%= user_form.input :last_name %>
+  <%= user_form.input :email %>
+  <%= user_form.input :phone %>
+  <%= user_form.input :username %>
+
+  <%= user_form.simple_fields_for :users do |us%>
+<% end %>
+
+
+<%# NOT DONE. Accidentally started it because I thought it was something else %>

@@ -1,9 +1,9 @@
 class CustomersController < ApplicationController
   include ActionView::Helpers::NumberHelper
   
-  before_action :check_login, except: [:new]
+  before_action :check_login, except: [:new, :create]
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
-  authorize_resource
+  # authorize_resource
   
   def index
     @active_customers = Customer.active.alphabetical.paginate(:page => params[:page]).per_page(10)
@@ -16,7 +16,7 @@ class CustomersController < ApplicationController
 
   def new
     @customer = Customer.new
-
+    @customer.build_user
   end
 
   def edit
@@ -29,6 +29,7 @@ class CustomersController < ApplicationController
   def create
     @customer = Customer.new(customer_params)
     if @customer.save
+      session[:user_id] = @customer.user.id #sign them in after account creation
       redirect_to @customer, notice: "#{@customer.proper_name} was added to the system."
     else
       render action: 'new'
@@ -51,8 +52,9 @@ class CustomersController < ApplicationController
   end
 
   def customer_params
-    reset_role_param unless current_user.role? :admin
-    params.require(:customer).permit(:first_name, :last_name, :email, :phone, :active)
+    reset_role_param unless (logged_in? && current_user.role?(:admin))
+    params.require(:customer).permit(:first_name, :last_name, :email, :phone, :active, 
+                                      user_attributes: [:username, :password, :password_confirmation, :role])
   end
 
   def reset_role_param
