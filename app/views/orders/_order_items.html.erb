@@ -1,3 +1,5 @@
+<h5 class="extra_margin"><strong>Total:</strong> <%= number_to_currency(order.grand_total) %></h5>
+
 <% order.order_items.each do |oi| %>
   <% item = oi.item %>
   <% cost = item.price_on_date(order.date) %>
@@ -15,12 +17,10 @@
         <small><%= "(#{oi.quantity} x #{number_to_currency(cost)})" %></small>
 
       </p>
-        <% if !all_shipped?(order) %>
-          <% if oi.shipped_on %>
-            Shipped on <%= print_date(oi.shipped_on) %> 
-          <% else %>
-            <strong>Not shipped yet</strong>
-          <% end %>
+        <% if oi.shipped_on %>
+          Shipped on <%= print_date(oi.shipped_on) %> 
+        <% else %>
+          <strong>Not shipped yet</strong>
         <% end %>
     </div>
 

@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  include BreadExpressHelpers::Cart
+  include BreadExpressHelpers::Shipping
 
 
   before_action :check_login
@@ -12,7 +14,7 @@ class OrdersController < ApplicationController
     elsif logged_in? && current_user.role?(:customer)
       # @pending_orders = current_user.customer.orders.not_shipped.chronological.paginate(:page => params[:page]).per_page(5)
       # @all_orders = current_user.customer.orders.chronological.paginate(:page => params[:page]).per_page(5)
-      @orders = current_user.customer.orders.chronological.paginate(:page => params[:page]).per_page(10)
+      @orders = current_user.customer.orders.chronological.order(updated_at: :desc).paginate(:page => params[:page]).per_page(10)
     end 
   end
 
@@ -26,18 +28,27 @@ class OrdersController < ApplicationController
   end
 
   def new
-
+    @order = Order.new
   end
 
   def create
     @order = Order.new(order_params)
 
-    if @order.save
-
-      redirect_to @order, notice: "Thank you for ordering from Bread Express."
+    if @order.valid?
+      @order.grand_total = calculate_cart_items_cost + calculate_cart_shipping
+      @order.pay
+      @order.save
+puts '-------------- AT CREATE, BEFORE save-each_item_in_cart'
+      save_each_item_in_cart @order
+      redirect_to orders_path, notice: "Your order has been placed. Thanks for shopping at Bread Express!"
+      clear_cart
     else
-      render action: 'new'
+      render 'new'
     end
+  end
+
+  def success
+    
   end
 
   def update
@@ -59,7 +70,7 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:address_id)
+    params.require(:order).permit(:date, :customer_id, :address_id, :credit_card_number, :expiration_year, :expiration_month)
   end
 
 

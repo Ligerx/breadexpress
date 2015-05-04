@@ -26,12 +26,12 @@
         <h5 class="text-right"><strong>Order Total</strong></h5>
       </div>
       <div class="small-6 columns">
-        <h5><strong><%= number_to_currency(calculate_cart_shipping + calculate_cart_items_cost) %><strong></h5>
+        <h5><strong><%= number_to_currency(calculate_cart_shipping + calculate_cart_items_cost) %></strong></h5>
       </div>
     </div>
 
 
-    <%= button_to "Checkout", checkout_path, class: 'button expand' %>
+    <%= button_to "Checkout", new_order_path, class: 'button expand', method: :get %>
 
   </div>
 

@@ -1,0 +1,42 @@
+<%= simple_form_for @order do |f| %>
+<% if @order.errors.any? %>
+  <%= @order.errors.full_messages.each {|m| m} %>
+<% end %>
+
+  <h4 class="extra_margin"><strong>Select a shipping address</strong></h4>
+
+  <div class="row" data-equalizer>
+    
+    <% current_user.customer.addresses.each_with_index do |a, index| %>
+      <div class="small-4 columns">
+        <div class="row">
+          <%= render partial: 'addresses/address_card', locals: {a: a} %>
+        </div>
+
+        <div class="row">
+          <%# f.input :address, as: :radio_buttons, label: 'Use this address: ' %>
+          <%# radio_button "order", "address", "#{a.id}" %>
+          <%= label_tag 'order_address_id', 'Ship to this address' %>
+          <%= radio_button_tag 'order[address_id]', "#{a.id}", (index == 0 ? true : false) %>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+
+  <hr>
+
+  <div class="row">
+
+    <div class="small-8 columns">
+      <h4 class="extra_margin"><strong>Order Summary</strong></h4>
+      <%= render partial: 'shopping/cart_items' %>
+    </div>
+
+    <div class="small-4 columns">
+      <h4 class="extra_margin"><strong>Payment Information</strong></h4>
+      <%= render partial: 'shopping/form', locals: {f: f} %>
+    </div>
+  </div>
+
+<% end %>

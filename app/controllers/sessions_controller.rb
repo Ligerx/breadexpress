@@ -30,12 +30,13 @@ class SessionsController < ApplicationController
   def destroy
 puts "Am I logged in as user #{session[:user_id]} ?----------------------"
     if session[:user_id]
-      session.delete(:user_id)
+      # session.delete(:user_id)
+      session[:user_id] = nil
 puts "DELETING USER_ID"
       destroy_cart
       flash[:notice] = 'Successfully logged out'
     end
-
+puts "End of destroy, user_id is #{session[:user_id].nil?} #{session[:user_id]}"
     redirect_to root_path
   end
 

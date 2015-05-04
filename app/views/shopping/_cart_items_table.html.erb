@@ -1,0 +1,13 @@
+<%= simple_form_for :cart, {url: update_cart_path} do |f| %>
+  <div class="small-8 columns">
+    <h1>Shopping Cart</h1>
+
+    <% unless session[:cart].empty? %>
+      <%= render partial: 'cart_items', locals: {f: f} %>
+    <% end %>
+
+    <div class="row">
+      <div class="right"><%= f.button :submit, "Update Cart", class: 'small move_left' %></div>
+    </div>
+  </div>
+<% end %>

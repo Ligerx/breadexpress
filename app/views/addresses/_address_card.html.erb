@@ -1,0 +1,21 @@
+<%# Must pass in 'a' (address obj) %>
+<%# Parent div should have data-equalizer class %>
+
+<ul class="vcard" data-equalizer-watch>
+  <li class="fn">
+    <%= a.recipient %>
+    <% if a.is_billing %>
+      <small>(billing)</small>
+    <% end %>
+  </li>
+
+  <li><%= a.street_1 %></li>
+
+  <% if a.street_2 %>
+    <li><%= a.street_2 %></li>
+  <% end %>
+
+  <li><%= a.city %></li>
+  <li><%= "#{a.state}, #{a.zip}" %></li>
+
+</ul>

@@ -1,0 +1,7 @@
+<%= f.input :date, as: :hidden, input_html: {value: Date.current} %>
+<%= f.input :customer_id, as: :hidden, input_html: {value: current_user.customer.id} %>
+<%= f.input :credit_card_number %>
+<%= f.input :expiration_year %>
+<%= f.input :expiration_month %>
+
+<%= f.button :submit, class: 'expand', value: 'Place your order' %>

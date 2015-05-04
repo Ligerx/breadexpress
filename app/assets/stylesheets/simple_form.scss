@@ -6,14 +6,14 @@
   }
   label {
     float: left;
-    width: 100px;
+    //width: 100px;
     text-align: right;
     margin: 2px 5px;
   }
 }
 
 div.boolean, .simple_form input[type='submit'] {
-  margin-left: 120px;
+  //margin-left: 120px;
 }
 
 div.boolean label {
@@ -29,17 +29,17 @@ label.collection_radio_buttons {
   margin-left: 2px;
 }
 
-.field_with_errors {
-  background-color: #ff3333;
-}
+// .field_with_errors {
+//   background-color: #ff3333;
+// }
 
 .simple_form {
-  .error {
-    clear: left;
-    color: black;
-    display: block;
-    margin-left: 120px;
-  }
+  // .error {
+  //   clear: left;
+  //   color: black;
+  //   display: block;
+  //   margin-left: 120px;
+  // }
   .hint {
     clear: left;
     margin-left: 120px;

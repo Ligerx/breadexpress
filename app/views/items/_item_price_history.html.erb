@@ -11,7 +11,7 @@
       </thead>
 
       <tbody>
-        <% item.item_prices.chronological.each do |price| %>
+        <% item.item_prices.chronological.order(created_at: :desc).each do |price| %>
           <tr>
             <td><%= number_to_currency price.price %></td>
             <td><%= print_date price.start_date %></td>

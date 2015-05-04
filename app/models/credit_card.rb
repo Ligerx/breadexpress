@@ -13,7 +13,7 @@
     attr_reader :expiration_year, :expiration_month
     
     def initialize(number, expiration_year, expiration_month)
-      @expiration_year, @expiration_month = expiration_year, expiration_month
+      @expiration_year, @expiration_month = expiration_year.to_i, expiration_month.to_i
       # set number to a string so we can use regex
       @number = number.to_s
       # .detect (part of Enumerable) passes each entry in enum to block and returns the first for which block is not false. 

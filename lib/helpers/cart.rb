@@ -60,6 +60,7 @@ module BreadExpressHelpers
 
     def save_each_item_in_cart(order)
       session[:cart].each do |item_id, quantity|
+puts "------------ #{item_id} #{quantity}"
         info = {item_id: item_id, quantity: quantity, order_id: order.id}
         OrderItem.create(info)
       end

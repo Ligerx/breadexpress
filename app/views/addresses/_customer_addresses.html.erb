@@ -4,28 +4,10 @@
 
 <div class="row" data-equalizer>
 
-<%# addresses = user.customer.addresses.active.by_recipient %>
 <% addresses.each do |a| %>
   <div class="small-4 columns">
-    <ul class="vcard" data-equalizer-watch>
-      <li class="fn">
-        <%= a.recipient %>
-        <% if a.is_billing %>
-          <small>(billing)</small>
-        <% end %>
-      </li>
 
-      <li><%= a.street_1 %></li>
-
-      <% if a.street_2 %>
-        <li><%= a.street_2 %></li>
-      <% end %>
-
-      <li><%= a.city %></li>
-      <li><%= "#{a.state}, #{a.zip}" %></li>
-
-    </ul>
-
+    <%= render partial: 'address_card', locals: {a: a} %>
 
     <%= link_to "Edit", edit_address_path(a), class: 'button small secondary' %>
     <%= link_to "Remove", deactivate_address_path(a.id), class: 'right' %>

@@ -25,13 +25,25 @@ class ShoppingController < ApplicationController
     redirect_to :cart, notice: 'Cart successfully updated'
   end
 
-  def checkout
-    
-  end
+  # def new
+  #   @order = Order.new
+  # end
 
-  def success
+  # def create
+  #   @order = Order.new(params[:order])
+
+  #   if @order.save
+  #     save_each_item_in_cart
+  #     redirect_to checkout_success_path
+  #     clear_cart
+  #   else
+  #     render 'new'
+  #   end
+  # end
+
+  # def success
     
-  end
+  # end
 
   helper_method :calculate_cart_items_cost
   helper_method :calculate_cart_shipping

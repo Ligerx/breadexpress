@@ -21,8 +21,10 @@ BreadExpress::Application.routes.draw do
   get 'cart', to: 'shopping#cart', as: :cart
   post 'shopping/add_item_to_cart_wrapper', as: :add_item_to_cart
   post 'shopping/update', as: :update_cart
-  post 'shopping/checkout', as: :checkout
-  get 'shopping/success', as: :checkout_success
+  # post 'shopping/new', as: :new_checkout
+  # post 'shopping/create', as: :checkout
+  # get 'shopping/success', as: :checkout_success
+  get 'orders/success', as: :checkout_success
 
 
   # Item routes

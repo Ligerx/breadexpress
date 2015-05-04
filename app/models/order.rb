@@ -33,6 +33,14 @@ class Order < ActiveRecord::Base
   validate :credit_card_number_is_valid
   validate :expiration_date_is_valid
 
+  # validates_numericality_of :credit_card_number
+  # validates_numericality_of :expiration_month
+  # validates_numericality_of :expiration_year
+
+  validates_presence_of :credit_card_number
+  validates_presence_of :expiration_month
+  validates_presence_of :expiration_year
+
   # Other methods
   def is_editable?
     !self.order_items.unshipped.empty?
@@ -80,7 +88,7 @@ class Order < ActiveRecord::Base
   end
 
   def credit_card_number_is_valid
-    return false if self.expiration_year.nil? || self.expiration_month.nil?
+    return false if self.expiration_year.blank? || self.expiration_month.blank?
     if self.credit_card_number.nil? || credit_card.type.nil?
       errors.add(:credit_card_number, "is not valid")
       return false
@@ -89,7 +97,7 @@ class Order < ActiveRecord::Base
   end
 
   def expiration_date_is_valid
-    return false if self.credit_card_number.nil? 
+    return false if self.credit_card_number.blank? 
     if self.expiration_year.nil? || self.expiration_month.nil? || credit_card.expired?
       errors.add(:expiration_year, "is expired")
       return false
