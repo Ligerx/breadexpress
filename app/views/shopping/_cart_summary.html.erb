@@ -1,0 +1,38 @@
+<% unless session[:cart].empty? %>
+ 
+  <div class="panel">
+    <h3 class="text-center"><strong>Summary</strong></h3>
+
+    <div class="row">
+      <div class="small-6 columns">
+        <p class="text-right"><strong>Subtotal</strong></p>
+      </div>
+      <div class="small-6 columns">
+        <p><%= number_to_currency(calculate_cart_items_cost) %></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-6 columns">
+        <p class="text-right"><strong>Shipping</strong></p>
+      </div>
+      <div class="small-6 columns">
+        <p><%= number_to_currency(calculate_cart_shipping) %></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-6 columns">
+        <h5 class="text-right"><strong>Order Total</strong></h5>
+      </div>
+      <div class="small-6 columns">
+        <h5><strong><%= number_to_currency(calculate_cart_shipping + calculate_cart_items_cost) %><strong></h5>
+      </div>
+    </div>
+
+
+    <%= button_to "Checkout", checkout_path, class: 'button expand' %>
+
+  </div>
+
+<% end %>

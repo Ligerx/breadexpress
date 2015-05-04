@@ -1,0 +1,45 @@
+<%= simple_form_for :cart, {url: update_cart_path} do |f| %>
+  <div class="small-8 columns">
+    <h1>Shopping Cart</h1>
+
+    <% unless session[:cart].empty? %>
+      <div class="row">
+        <div class="small-4 small-offset-2 columns"><strong>Item Name</strong></div>
+        <div class="small-2 columns"><strong>Price</strong></div>
+        <div class="small-2 columns"><strong>Quantity</strong></div>
+        <div class="small-2 columns"><strong>Subtotal</strong></div>
+      </div>
+
+
+      <% session[:cart].each do |item_id, quantity| %>
+        <% item = Item.find(item_id) %>
+
+        <div class="row">
+          <div class="small-2 columns">
+            <%= render partial: 'partials/item_image', locals: {item: item} %>
+          </div>
+
+          <div class="small-4 columns">
+            <%= link_to item.name, item %>
+          </div>
+
+          <div class="small-2 columns">
+            <%= number_to_currency(item.current_price) %>
+          </div>
+
+          <div class="small-2 columns">
+            <%= f.input item_id.to_sym, label: false, input_html: {value: quantity, type: 'number'} %>
+          </div>
+
+          <div class="small-2 columns">
+            <%= number_to_currency(item.current_price * quantity.to_i) %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <div class="row">
+      <div class="right"><%= f.button :submit, "Update Cart", class: 'small move_left' %></div>
+    </div>
+  </div>
+<% end %>

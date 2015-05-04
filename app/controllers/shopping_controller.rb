@@ -1,5 +1,6 @@
 class ShoppingController < ApplicationController
   include BreadExpressHelpers::Cart
+  include BreadExpressHelpers::Shipping
 
   def cart
   end
@@ -14,4 +15,24 @@ class ShoppingController < ApplicationController
       redirect_to :back, alert: 'Please enter a valid quantity'
     end
   end
+
+  def update
+    new_cart = params[:cart]
+    new_cart.delete_if { |item_id, quantity| quantity.to_i <= 0 }
+
+    session[:cart] = new_cart
+
+    redirect_to :cart, notice: 'Cart successfully updated'
+  end
+
+  def checkout
+    
+  end
+
+  def success
+    
+  end
+
+  helper_method :calculate_cart_items_cost
+  helper_method :calculate_cart_shipping
 end

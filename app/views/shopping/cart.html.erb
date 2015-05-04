@@ -1,2 +1,8 @@
-<h1>THIS IS CART</h1>
-<%= session[:cart] %>
+<div class="row">    
+  <%= render partial: 'cart_items' %>
+
+  <div class="small-4 columns">
+    <%= render partial: 'cart_summary' %>
+  </div>
+</div>
+
