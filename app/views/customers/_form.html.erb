@@ -9,7 +9,6 @@
 
 
     <%= customer_form.simple_fields_for :user do |user_form| %>
-      <%= user_form.input :role, as: :hidden, input_html: { value: 'customer' } %><%# remove this line prob %>
       <%= user_form.input :username %>
       <%= user_form.input :password %>
       <%= user_form.input :password_confirmation %>

@@ -1,15 +1,22 @@
 class AddressesController < ApplicationController
   before_action :check_login
   before_action :set_address, only: [:show, :edit, :update, :destroy]
-  authorize_resource
+  # authorize_resource
   
   def index
+    # if current_user.role? :customer
+    #   @active_addresses = current_user.customer.addresses.active.by_recipient.paginate(:page => params[:page]).per_page(10)
+    #   @inactive_addresses = current_user.customer.addresses.inactive.by_recipient.paginate(:page => params[:page]).per_page(10)      
+    # else
+    #   @active_addresses = Address.active.by_customer.by_recipient.paginate(:page => params[:page]).per_page(10)
+    #   @inactive_addresses = Address.inactive.by_customer.by_recipient.paginate(:page => params[:page]).per_page(10)
+    # end
+
     if current_user.role? :customer
-      @active_addresses = current_user.customer.addresses.active.by_recipient.paginate(:page => params[:page]).per_page(10)
-      @inactive_addresses = current_user.customer.addresses.inactive.by_recipient.paginate(:page => params[:page]).per_page(10)      
-    else
-      @active_addresses = Address.active.by_customer.by_recipient.paginate(:page => params[:page]).per_page(10)
-      @inactive_addresses = Address.inactive.by_customer.by_recipient.paginate(:page => params[:page]).per_page(10)
+      @addresses = current_user.customer.addresses.active.by_recipient
+puts "IN CUSTOMER ADDRESS INDEX"
+    elsif current_user.role? :admin
+      @addresses = Address.by_customer.by_recipient.paginate(page: params[:page]).per_page(10)
     end
   end
 
@@ -45,6 +52,16 @@ class AddressesController < ApplicationController
     @address.destroy
     redirect_to addresss_url, notice: "The address was removed from the system."
   end
+
+
+  def deactivate
+    address = Address.find(params[:id])
+    address.update(active: false)
+puts "IN DEACTIVATE"
+    flash[:notice] = 'Successfully removed address'
+    redirect_to :back
+  end
+
 
   private
   def set_address

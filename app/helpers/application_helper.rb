@@ -22,4 +22,14 @@ module ApplicationHelper
     session[:cart].each { |k,v| total += v.to_i }
     return total
   end
+
+  def current_path?(path)
+    # If this selection is a link to the current page
+    # then add a class to it
+    if current_page?(path)
+      'current_page'
+    else
+      nil
+    end
+  end
 end

@@ -1,21 +1,23 @@
-<h3><%= @customer.proper_name %></h3>
+<h3><%= customer.proper_name %></h3>
 
 <p>
-  <b>Phone</b>: <%= number_to_phone @customer.phone %>
+  <b>Phone</b>: <%= number_to_phone customer.phone %>
 </p>
 
 <p>
-  <b>Email</b>: <%= mail_to @customer.email, @customer.email, encode: "javascript" %>
+  <b>Email</b>: <%= mail_to customer.email, customer.email, encode: "javascript" %>
 </p>
 
 <p>
-  <b>Username</b>: <%= @customer.user.username %>
+  <b>Username</b>: <%= customer.user.username %>
 </p>
 
-<p>
-  <b>Active</b>: <%= @customer.active ? 'Yes' : 'No' %>
-</p>
+<% if logged_in? && current_user.role?(:admin) %>
+  <p>
+    <b>Active</b>: <%= customer.active ? 'Yes' : 'No' %>
+  </p>
+<% end %>
 
 <p>
-  <em>A Bread Express customer since <%= @customer.created_at.year %>.</em>
+  <em>A Bread Express customer since <%= customer.created_at.year %>.</em>
 </p>

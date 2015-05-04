@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="small-2 columns">
+    <% if logged_in? && current_user.role?(:customer) %>
+      <%= render partial: 'customers/customer_nav', locals: {customer: current_user.customer} %>
+    <% elsif logged_in? && current_user.role?(:admin) %>
+      <%# ADD ADMIN DASHBOARD HERE? %>
+    <% end %>
+  </div>
+
+  <div class="small-10 columns">
+    <%= render partial: "#{partial_name}", locals: {user: current_user,
+                                                    customer: (defined?(customer) ? customer : (current_user.customer ? current_user.customer : nil)),
+                                                    addresses: (defined?(addresses) ? addresses : nil),
+                                                    orders: (defined?(orders) ? orders : nil)
+                                                   } %>
+  </div>
+</div>

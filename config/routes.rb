@@ -28,6 +28,10 @@ BreadExpress::Application.routes.draw do
   get 'pastries', to: 'items#index', defaults: { type: 'pastries' }, as: :pastries
 
 
+  # Extra address routes
+  get 'addresses/:id/deactivate', to: 'addresses#deactivate', as: :deactivate_address
+
+
   # Semi-static page routes
   get 'home' => 'home#home', as: :home
   get 'about' => 'home#about', as: :about
