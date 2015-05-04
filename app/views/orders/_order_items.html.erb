@@ -1,0 +1,28 @@
+<% order.order_items.each do |oi| %>
+  <% item = oi.item %>
+  <% cost = item.price_on_date(order.date) %>
+
+  <div class="row order_item">
+
+    <div class="small-3 columns">
+      <%= render partial: 'partials/item_image', locals: {item: oi.item} %>
+    </div>
+
+    <div class="small-9 columns left">
+      <p>
+        <h4><%= link_to item.name, item %></h4>
+        <%= number_to_currency(oi.quantity * cost) %> <br/>
+        <small><%= "(#{oi.quantity} x #{number_to_currency(cost)})" %></small>
+
+      </p>
+        <% if !all_shipped?(order) %>
+          <% if oi.shipped_on %>
+            Shipped on <%= print_date(oi.shipped_on) %> 
+          <% else %>
+            <strong>Not shipped yet</strong>
+          <% end %>
+        <% end %>
+    </div>
+
+  </div>
+<% end %>

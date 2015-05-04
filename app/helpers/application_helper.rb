@@ -32,4 +32,21 @@ module ApplicationHelper
       nil
     end
   end
+
+  def all_shipped?(order)
+    order.order_items.each do |oi|
+      return false unless oi.shipped_on
+    end
+
+    return true
+  end
+
+  def all_unshipped?(order)
+    order.order_items.each do |oi|
+      return false if oi.shipped_on
+    end
+
+    return true
+  end
+
 end

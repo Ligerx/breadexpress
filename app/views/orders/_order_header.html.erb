@@ -1,0 +1,27 @@
+<div class="row order_header">
+
+  <div class="small-3 columns">
+    <h2><%= all_shipped?(order) ? 'Delivered' : 'Shipping' %></h2>
+  </div>
+
+  <div class="small-3 columns">
+    <p><strong>Order placed</strong> <br/><%= print_date(order.date) %></p>
+  </div>
+
+  <div class="small-3 columns">
+    <p>
+      <strong>Shipped to</strong> <br/>
+      <%= order.address.recipient %>
+    </p>
+  </div>
+
+  <div class="small-3 columns">
+    <p>
+      <%= order.address.street_1 %> <br/>
+      <%= raw("#{order.address.street_2}<br/>") if order.address.street_2 %>
+      <%= order.address.city %> <br/>
+      <%= "#{order.address.state}, #{order.address.zip}" %>
+    </p>
+  </div>
+
+</div>

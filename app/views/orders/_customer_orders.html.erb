@@ -1,0 +1,11 @@
+<h1>Your Orders</h1>
+
+<% orders.each do |o| %>
+  <div class="panel <%= 'callout' unless all_shipped?(o) %>">
+
+    <%= render partial: 'order_header', locals: {order: o} %>
+
+    <%= render partial: 'order_items', locals: {order: o} %>
+
+  </div>
+<% end %>

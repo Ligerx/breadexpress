@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  include BreadExpressHelpers::Cart 
+
   def new
     if session[:user_id]
       flash[:alert] = "You're already logged in"
@@ -9,6 +11,8 @@ class SessionsController < ApplicationController
   end
 
   def create
+    create_cart
+
     user = User.find_by(username: params[:login][:username])
     if user && user.authenticate(params[:login][:password])
       session[:user_id] = user.id
@@ -24,8 +28,11 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+puts "Am I logged in as user #{session[:user_id]} ?----------------------"
     if session[:user_id]
       session.delete(:user_id)
+puts "DELETING USER_ID"
+      destroy_cart
       flash[:notice] = 'Successfully logged out'
     end
 

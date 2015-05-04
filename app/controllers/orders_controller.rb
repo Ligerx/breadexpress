@@ -6,12 +6,13 @@ class OrdersController < ApplicationController
   # authorize_resource
   
   def index
-    if logged_in? && !current_user.role?(:customer)
-      @pending_orders = Order.not_shipped.chronological.paginate(:page => params[:page]).per_page(5)
-      @all_orders = Order.chronological.paginate(:page => params[:page]).per_page(5)
-    else
-      @pending_orders = current_user.customer.orders.not_shipped.chronological.paginate(:page => params[:page]).per_page(5)
-      @all_orders = current_user.customer.orders.chronological.paginate(:page => params[:page]).per_page(5)
+    if logged_in? && current_user.role?(:admin)
+      # @pending_orders = Order.not_shipped.chronological.paginate(:page => params[:page]).per_page(5)
+      # @all_orders = Order.chronological.paginate(:page => params[:page]).per_page(5)
+    elsif logged_in? && current_user.role?(:customer)
+      # @pending_orders = current_user.customer.orders.not_shipped.chronological.paginate(:page => params[:page]).per_page(5)
+      # @all_orders = current_user.customer.orders.chronological.paginate(:page => params[:page]).per_page(5)
+      @orders = current_user.customer.orders.chronological.paginate(:page => params[:page]).per_page(10)
     end 
   end
 

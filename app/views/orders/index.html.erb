@@ -1,4 +1,10 @@
-<%= render partial: "partials/index_structure", locals: {model_name: "order", 
+<%# render partial: "partials/index_structure", locals: {model_name: "order", 
                                                          primary: "pending_orders", 
                                                          secondary: "past_orders",
                                                          sidebar: nil} %>
+
+
+<%= render partial: 'partials/dashboard/customer_admin_dashboard',
+            locals: {partial_name: 'customer_orders',
+                     orders: @orders
+                    } %>
