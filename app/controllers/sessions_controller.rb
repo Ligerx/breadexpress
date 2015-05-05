@@ -31,8 +31,9 @@ class SessionsController < ApplicationController
 puts "Am I logged in as user #{session[:user_id]} ?----------------------"
     if session[:user_id]
       # session.delete(:user_id)
-      session[:user_id] = nil
 puts "DELETING USER_ID"
+      session[:user_id] = nil
+puts "User_id should have been deleted. #{session[:user_id].nil?}"
       destroy_cart
       flash[:notice] = 'Successfully logged out'
     end

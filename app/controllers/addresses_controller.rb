@@ -13,7 +13,7 @@ class AddressesController < ApplicationController
     # end
 
     if current_user.role? :customer
-      @addresses = current_user.customer.addresses.active.by_recipient
+      @addresses = current_user.customer.addresses.order(active: :desc).by_recipient
 puts "IN CUSTOMER ADDRESS INDEX"
     elsif current_user.role? :admin
       @addresses = Address.by_customer.by_recipient.paginate(page: params[:page]).per_page(10)
@@ -58,7 +58,15 @@ puts "IN CUSTOMER ADDRESS INDEX"
     address = Address.find(params[:id])
     address.update(active: false)
 puts "IN DEACTIVATE"
-    flash[:notice] = 'Successfully removed address'
+    flash[:notice] = 'Successfully deactivated address'
+    redirect_to :back
+  end
+
+  def activate
+    address = Address.find(params[:id])
+    address.update(active: true)
+puts "IN ACTIVATE"
+    flash[:notice] = 'Successfully activated address'
     redirect_to :back
   end
 

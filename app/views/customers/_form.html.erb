@@ -9,9 +9,16 @@
 
 
     <%= customer_form.simple_fields_for :user do |user_form| %>
-      <%= user_form.input :username %>
+      <% if logged_in? && current_user.role?(:admin) %>
+        <%= user_form.input :username %>
+      <% end %>
+
       <%= user_form.input :password %>
       <%= user_form.input :password_confirmation %>
+
+      <% if logged_in? && current_user.role?(:admin) %>
+        <%= user_form.input :active %>
+      <% end %>
     <% end %>
 
     <div class="form-actions">

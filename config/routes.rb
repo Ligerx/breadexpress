@@ -35,6 +35,7 @@ BreadExpress::Application.routes.draw do
 
   # Extra address routes
   get 'addresses/:id/deactivate', to: 'addresses#deactivate', as: :deactivate_address
+  get 'addresses/:id/activate', to: 'addresses#activate', as: :activate_address
 
 
   # Semi-static page routes

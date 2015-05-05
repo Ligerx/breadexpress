@@ -1,9 +1,10 @@
 <%# Must pass in 'a' (address obj) %>
 <%# Parent div should have data-equalizer class %>
 
-<ul class="vcard" data-equalizer-watch>
+<ul class="vcard <%= a.active? ? nil : 'inactive' %>" data-equalizer-watch>
   <li class="fn">
     <%= a.recipient %>
+
     <% if a.is_billing %>
       <small>(billing)</small>
     <% end %>

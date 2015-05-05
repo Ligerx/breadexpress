@@ -37,11 +37,14 @@ class CustomersController < ApplicationController
   end
 
   def update
+puts "In customer update"
     # just in case customer trying to hack the http request...
     reset_username_param unless (logged_in? && current_user.role?(:admin))
-    if @customer.update(customer_params)
+    if @customer.update!(customer_params)
+puts "successfully update, redirecting to show page"
       redirect_to @customer, notice: "#{@customer.proper_name} was revised in the system."
     else
+puts "failed to update, re-rendering edit page"
       render action: 'edit'
     end
   end
@@ -54,7 +57,7 @@ class CustomersController < ApplicationController
   def customer_params
     reset_role_param unless (logged_in? && current_user.role?(:admin))
     params.require(:customer).permit(:first_name, :last_name, :email, :phone, :active, 
-                                      user_attributes: [:username, :password, :password_confirmation, :role])
+                                      user_attributes: [:id, :username, :password, :password_confirmation, :role, :active])
   end
 
   def reset_role_param

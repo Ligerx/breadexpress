@@ -10,7 +10,12 @@
     <%= render partial: 'address_card', locals: {a: a} %>
 
     <%= link_to "Edit", edit_address_path(a), class: 'button small secondary' %>
-    <%= link_to "Remove", deactivate_address_path(a.id), class: 'right' %>
+    
+    <% if a.active %>
+      <%= link_to "Disable", deactivate_address_path(a.id), class: 'right' %>
+    <% else %>
+      <%= link_to "Enable", activate_address_path(a.id), class: 'right' %>
+    <% end %>
   </div>
 <% end %>
 </div>

@@ -3,19 +3,22 @@
     <legend><%= controller.action_name.capitalize %> Address</legend>
 
     <% if current_user.role?(:admin) %>
-      <%= f.input :customer_id, collection: Customer.active.alphabetical, include_blank: true, input_html: {class: "avg"} %>
+      <%= f.input :customer_id, collection: Customer.active.alphabetical, include_blank: true %>
     <% else %>
       <%= f.input :customer_id, as: :hidden, input_html: { value: current_user.customer.id } %>
     <% end %>
 
-    <%= f.input :recipient, input_html: {class: "avg"} %>
-    <%= f.input :street_1, input_html: {class: "avg"} %>
-    <%= f.input :street_2, input_html: {class: "avg"} %>
-    <%= f.input :city, input_html: {class: "avg"} %>
-    <%= f.input :state, collection: Address::STATES_LIST, include_blank: true, input_html: {class: "avg"} %>
-    <%= f.input :zip, input_html: {class: "avg"} %>
+    <%= f.input :recipient %>
+    <%= f.input :street_1 %>
+    <%= f.input :street_2 %>
+    <%= f.input :city %>
+    <%= f.input :state, collection: Address::STATES_LIST, include_blank: true %>
+    <%= f.input :zip %>
     <%= f.input :is_billing, label: 'Billing? ' %>
-    <%= f.input :active %>
+
+    <% if current_user.role?(:admin) %>
+      <%= f.input :active %>
+    <% end %>
 
 
     <div class="form-actions">

@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   # Validations
   validates :username, presence: true, uniqueness: { case_sensitive: false}
+  # validates :username, presence: true, uniqueness: { case_sensitive: false}, 
+  #               unless: ->(u) { User.find_by(username: u.username).id == u.id }
   validates :role, inclusion: { in: %w[admin baker shipper customer], message: "is not a recognized role in system" }
   validates_presence_of :password, on: :create 
   validates_presence_of :password_confirmation, on: :create 
