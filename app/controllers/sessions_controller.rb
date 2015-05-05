@@ -32,12 +32,13 @@ puts "Am I logged in as user #{session[:user_id]} ?----------------------"
     if session[:user_id]
       # session.delete(:user_id)
 puts "DELETING USER_ID"
-      session[:user_id] = nil
+      # session[:user_id] = nil
 puts "User_id should have been deleted. #{session[:user_id].nil?}"
-      destroy_cart
+      # destroy_cart
+      reset_session #using this instead, maybe itll work out better
       flash[:notice] = 'Successfully logged out'
     end
-puts "End of destroy, user_id is #{session[:user_id].nil?} #{session[:user_id]}"
+puts "End of destroy, user_id is nil?#{session[:user_id].nil?} #{session[:user_id]}"
     redirect_to root_path
   end
 

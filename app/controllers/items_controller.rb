@@ -16,7 +16,7 @@ class ItemsController < ApplicationController
 
     # For everyone else, show similar products
     # Exclude the current item if it's also on the list
-    @similar_items = Item.for_category(@item.category).where.not(id: params[:id])
+    @similar_items = Item.for_category(@item.category).active.where.not(id: params[:id])
 
     # Include empty item price to fill the form 
     @new_price = ItemPrice.new

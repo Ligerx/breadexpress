@@ -1,0 +1,16 @@
+<ul class="side-nav">
+  <li class="header">Magical Admin Powers</li>
+  <li><%= link_to "Items", items_path, class: current_path?(items_path) %></li>
+  <li><%= link_to "Orders", orders_path, class: current_path?(orders_path) %></li>
+
+  <li class="divider"></li>
+
+  <li><%= link_to "Users", users_path, class: current_path?(users_path) %></li>
+  <li><%= link_to "Customers", customers_path, class: current_path?(customers_path) %></li>
+  <li><%= link_to "Addresses", addresses_path, class: current_path?(addresses_path) %></li>
+ 
+  <li class="divider"></li>
+
+  <li><%= link_to "Baking", baking_path, class: current_path?(baking_path) %></li>
+  <li><%= link_to "Shipping", shipping_path, class: current_path?(shipping_path) %></li>
+</ul>

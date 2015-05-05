@@ -28,8 +28,16 @@
   padding-top: 20px;
 }
 
-.side-nav .current_page {
-  font-weight: bold;
+.side-nav {
+  .current_page {
+    font-weight: bold;
+  }
+
+  .divider {
+    border-top-color: #E6E6E6;
+    border-top-width: 1px;
+    border-top-style: solid;
+  }
 }
 
 .move_left {
@@ -39,4 +47,9 @@
 .extra_margin {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.side-nav .header {
+  // font-size: 1rem;
+  font-weight: bold;
 }

@@ -38,6 +38,10 @@ BreadExpress::Application.routes.draw do
   get 'addresses/:id/activate', to: 'addresses#activate', as: :activate_address
 
 
+  # Admin routes
+  get 'dashboard', to: 'home#dashboard', as: :dashboard
+  
+
   # Semi-static page routes
   get 'home' => 'home#home', as: :home
   get 'about' => 'home#about', as: :about

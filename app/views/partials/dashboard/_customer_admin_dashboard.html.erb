@@ -3,7 +3,7 @@
     <% if logged_in? && current_user.role?(:customer) %>
       <%= render partial: 'customers/customer_nav', locals: {customer: current_user.customer} %>
     <% elsif logged_in? && current_user.role?(:admin) %>
-      <%# ADD ADMIN DASHBOARD HERE? %>
+      <%= render partial: 'home/admin/admin_nav' %>
     <% end %>
   </div>
 
