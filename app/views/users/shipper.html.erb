@@ -1,0 +1,57 @@
+<h2>Unshipped Orders</h2>
+
+<%= simple_form_for :shipped_order_items, {url: update_order_items_path} do |f| %>
+
+  <% if @unshipped_orders.empty? %>
+    <h4>Nothing needs to be shipped</h4>
+
+  <% else %>
+    <div class="row">
+      <div class="small-3 columns right">
+        <%= f.button :submit, "Ship checked items", class: 'expand' %>
+      </div>
+    </div>
+
+    <% @unshipped_orders.each do |order| %>
+      <div class="row">
+        <div class="small-3 columns">
+          <div>
+            <%= render partial: 'addresses/address_card', locals: {a: order.address} %>
+          </div>
+        </div>
+
+
+          <div class="small-9 columns">
+            <div class="panel">
+              
+              <% order.order_items.unshipped.each do |oitem| %>
+                <div class="row">
+                  <div class="small-5 columns">
+                    <strong><%= oitem.item.name %></strong>
+                  </div>
+                  <div class="small-2 columns">
+                    <%= pluralize(oitem.quantity, 'order') %>
+                  </div>
+                  <div class="small-3 columns">
+                    <small><%= pluralize(oitem.quantity*oitem.item.units_per_item, 'unit') +' total' %></small>
+                  </div>
+                  <div class="small-2 columns">
+                    <%= f.input "#{oitem.id}", as: :boolean, inline_label: 'Shipped?' %>
+                  </div>
+                </div>
+              <% end %>
+
+            </div>
+          </div>
+
+      </div>
+    <% end %>
+
+    <div class="row">
+      <div class="small-3 columns right">
+        <%= f.button :submit, "Ship checked items", class: 'expand' %>
+      </div>
+    </div>    
+  <% end %>
+
+<% end %>

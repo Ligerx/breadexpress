@@ -41,6 +41,7 @@ BreadExpress::Application.routes.draw do
   # baking/shipping
   get 'baker', to: 'users#baker', as: :baker
   get 'shipper', to: 'users#shipper', as: :shipper
+  post 'shipper', to: 'users#update_order_items', as: :update_order_items
 
 
   # Semi-static page routes

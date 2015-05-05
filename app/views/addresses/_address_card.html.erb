@@ -1,7 +1,9 @@
 <%# Must pass in 'a' (address obj) %>
-<%# Parent div should have data-equalizer class %>
 
-<ul class="vcard <%= a.active? ? nil : 'inactive' %>" data-equalizer-watch>
+<%# Pass equalizer (true/false) to set equalizer class %>
+<%# If true, parent div should have data-equalizer class %>
+
+<ul class="vcard <%= a.active? ? nil : 'inactive' %>" <%= 'data-equalizer-watch' if (defined?(equalizer) && equalizer) %>>
   <li class="fn">
     <%= a.recipient %>
 

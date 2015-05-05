@@ -28,11 +28,15 @@ class UsersController < ApplicationController
 
 
   def baker
-    # @order_items = OrderItems.
   end
 
   def shipper
-    
+    @unshipped_orders = Order.not_shipped.chronological
+  end
+
+  #lol don't know where to put it cause there's no orderitem controller
+  def update_order_items
+    redirect_to shipper_path, notice: "Updated orders"
   end
 
 end

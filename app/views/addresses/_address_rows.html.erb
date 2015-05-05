@@ -4,12 +4,12 @@
   <% last_address = (addresses.size-1 == index) %>
 
   <% if first_in_row %>
-    <div class="row" data-equalizer>
+    <div class="row" data-equalizer="address">
   <% end %>
 
     <div class="small-4 columns<%= ' end' if last_address %>">
 
-      <%= render partial: 'address_card', locals: {a: a} %>
+      <%= render partial: 'address_card', locals: {a: a, equalizer: true} %>
 
       <%= link_to "Edit", edit_address_path(a), class: 'button small secondary' %>
       
