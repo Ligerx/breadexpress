@@ -3,14 +3,14 @@
     <li><%= link_to 'Login to access your cart', login_path %></li>
 
   <% elsif current_user.role? :baker %>
-    <li><%= link_to 'Baking List', '#' %></li>
+    <li><%= link_to 'Baking List', baker_path, class: "button expand" %></li>
 
   <% elsif current_user.role? :shipper %>
-    <li><%= link_to 'Shipping List', '#' %></li>
+    <li><%= link_to 'Shipping List', shipper_path, class: "button expand" %></li>
 
   <% else %>
     <% if current_user.role? :admin %>
-      <li><%= link_to 'Admin Dashboard', '#' %></li>
+      <li><%= link_to 'Admin Dashboard', dashboard_path, class: "button expand" %></li>
     <% end %>
     <li><%= link_to "Cart(#{cart_size})", cart_path %></li>
   <% end %>

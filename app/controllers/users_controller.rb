@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
   include BreadExpressHelpers::Cart
+  include BreadExpressHelpers::Baking
+
+  helper_method :create_baking_list_for
 
   def index
   end
@@ -25,7 +28,7 @@ class UsersController < ApplicationController
 
 
   def baker
-    
+    # @order_items = OrderItems.
   end
 
   def shipper

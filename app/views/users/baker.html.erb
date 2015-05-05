@@ -1,0 +1,36 @@
+<div class="row">
+  <h2>Baking List</h2>
+
+  <% categories = Item::CATEGORIES %>
+  <% categories.each do |array| %>
+
+    <div class="small-4 columns">
+      <h4><strong><%= array[0] %></strong></h4>
+
+      <% list = create_baking_list_for(array[1]) %>
+      <% list_keys = list.keys %>
+
+      <% if list.empty? %>
+        <h4>No orders to bake</h4>
+      <% else %>
+        <table>
+          <thead>
+            <tr>
+              <td>Name</td>
+              <td width="75">Amount</td>
+            </tr>
+          </thead>
+        <% list_keys.each do |k| %>
+          <tbody>
+            <td><%= k %></td>
+            <td><%= list[k] %></td>
+          </tbody>
+        <% end %>
+
+        </table>
+      <% end %>
+
+    </div>
+
+  <% end %>
+</div>
