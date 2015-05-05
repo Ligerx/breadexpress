@@ -34,9 +34,10 @@
   }
 
   .divider {
-    border-top-color: #E6E6E6;
-    border-top-width: 1px;
-    border-top-style: solid;
+    // border-top-color: #E6E6E6;
+    // border-top-width: 1px;
+    // border-top-style: solid;
+    border-top: 1px solid #E6E6E6;
   }
 }
 
@@ -56,4 +57,9 @@
 
 table {
   width: 100%;
+}
+
+.add-space-between-shipping .row:not(:first-child) {
+  border-top: 1px solid #DADADA;
+  padding-top: 15px;
 }
