@@ -1,0 +1,27 @@
+<% addresses.each_with_index do |a, index| %>
+  <% first_in_row = (index % 3 == 0) %>
+  <% last_in_row = (index % 3 == 2) %>
+  <% last_address = (addresses.size-1 == index) %>
+
+  <% if first_in_row %>
+    <div class="row" data-equalizer>
+  <% end %>
+
+    <div class="small-4 columns<%= ' end' if last_address %>">
+
+      <%= render partial: 'address_card', locals: {a: a} %>
+
+      <%= link_to "Edit", edit_address_path(a), class: 'button small secondary' %>
+      
+      <% if a.active %>
+        <%= link_to "Disable", deactivate_address_path(a.id), class: 'right' %>
+      <% else %>
+        <%= link_to "Enable", activate_address_path(a.id), class: 'right' %>
+      <% end %>
+    </div>
+
+  <% if last_in_row || last_address %>
+    </div>
+  <% end %>
+
+<% end %>

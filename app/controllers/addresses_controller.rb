@@ -13,7 +13,7 @@ class AddressesController < ApplicationController
     # end
 
     if current_user.role? :customer
-      @addresses = current_user.customer.addresses.order(active: :desc).by_recipient
+      @addresses = current_user.customer.addresses.by_recipient
 puts "IN CUSTOMER ADDRESS INDEX"
     elsif current_user.role? :admin
       @addresses = Address.by_customer.by_recipient.paginate(page: params[:page]).per_page(10)

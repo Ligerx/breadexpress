@@ -12,8 +12,8 @@
     <%= f.input :street_1 %>
     <%= f.input :street_2 %>
     <%= f.input :city %>
-    <%= f.input :state, collection: Address::STATES_LIST, include_blank: true %>
-    <%= f.input :zip %>
+    <%= f.input :state, collection: Address::STATES_LIST, include_blank: true, required: true %>
+    <%= f.input :zip, required: true%>
     <%= f.input :is_billing, label: 'Billing? ' %>
 
     <% if current_user.role?(:admin) %>

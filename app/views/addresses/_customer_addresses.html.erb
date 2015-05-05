@@ -2,23 +2,12 @@
 <h1>Address Book</h1>
 <%= link_to "Add Address", new_address_path, class: 'button tiny' %>
 
-<div class="row" data-equalizer>
 
-<% addresses.each do |a| %>
-  <div class="small-4 columns">
+<%= render partial: 'address_rows', locals: {addresses: addresses.active} %>
 
-    <%= render partial: 'address_card', locals: {a: a} %>
-
-    <%= link_to "Edit", edit_address_path(a), class: 'button small secondary' %>
-    
-    <% if a.active %>
-      <%= link_to "Disable", deactivate_address_path(a.id), class: 'right' %>
-    <% else %>
-      <%= link_to "Enable", activate_address_path(a.id), class: 'right' %>
-    <% end %>
-  </div>
+<% if addresses.inactive.size > 0 %>
+  <h5>Inactive Addresses</h5>
+  <%= render partial: 'address_rows', locals: {addresses: addresses.inactive} %>
 <% end %>
-</div>
-
 
 <%= link_to "Add Address", new_address_path, class: 'button tiny' %>
