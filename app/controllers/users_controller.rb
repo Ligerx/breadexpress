@@ -23,4 +23,13 @@ class UsersController < ApplicationController
   def destroy
   end
 
+
+  def baker
+    
+  end
+
+  def shipper
+    
+  end
+
 end

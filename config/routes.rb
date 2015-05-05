@@ -11,7 +11,6 @@ BreadExpress::Application.routes.draw do
   
   # Authentication routes
   get 'signup', to: 'customers#new', as: :signup
-
   get "login", to: 'sessions#new', as: :new_login
   post "login", to: 'sessions#create', as: :login
   get "logout", to: 'sessions#destroy', as: :logout
@@ -21,9 +20,6 @@ BreadExpress::Application.routes.draw do
   get 'cart', to: 'shopping#cart', as: :cart
   post 'shopping/add_item_to_cart_wrapper', as: :add_item_to_cart
   post 'shopping/update', as: :update_cart
-  # post 'shopping/new', as: :new_checkout
-  # post 'shopping/create', as: :checkout
-  # get 'shopping/success', as: :checkout_success
   get 'orders/success', as: :checkout_success
 
 
@@ -40,7 +36,12 @@ BreadExpress::Application.routes.draw do
 
   # Admin routes
   get 'dashboard', to: 'home#dashboard', as: :dashboard
-  
+
+
+  # baking/shipping
+  get 'baker', to: 'users#baker', as: :baker
+  get 'shipper', to: 'users#shipper', as: :shipper
+
 
   # Semi-static page routes
   get 'home' => 'home#home', as: :home
