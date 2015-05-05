@@ -20,7 +20,16 @@ class SessionsController < ApplicationController
       flash[:notice] = "Welcome back #{user.customer.first_name}!" if user.role? :customer
       flash[:notice] = "Successfully logged in!" if !user.role? :customer
 
-      redirect_back and return
+      if user.role? :customer
+        redirect_back and return
+      elsif user.role? :admin
+        redirect_to dashboard_path
+      elsif user.role? :baker
+        redirect_to baker_path
+      elsif user.role? :shipper
+        redirect_to shipper_path
+      end
+
     else
       flash.now[:alert] = 'Invalid username or password'
       render 'new'
