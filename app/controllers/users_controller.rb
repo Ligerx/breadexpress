@@ -35,24 +35,30 @@ class UsersController < ApplicationController
   end
 
   #lol don't know where to put it cause there's no orderitem controller
+  #changed to allow checking and unchecking of items
   def update_order_items
-    any_checked = false
+    any_changed = false
 
     params[:shipped_order_items].each do |oi_id, check|
+      oi = OrderItem.find(oi_id)
+
       #check is a string, so do string comparison
-      if check == '1'
-        oi = OrderItem.find(oi_id)
+      if check == '1' && oi.shipped_on.nil?
         oi.update(shipped_on: Date.current) 
-        any_checked = true
+        any_changed = true
+
+      elsif check == '0' && oi.shipped_on
+        oi.update(shipped_on: nil) 
+        any_changed = true
       end
     end
 
-    if any_checked
+    if any_changed
       flash[:notice] = "Updated orders!"
     else
-      flash[:alert] = "No items were marked as shipped"
+      flash[:alert] = "No items were changed"
     end
-    
+
     redirect_to shipper_path
   end
 

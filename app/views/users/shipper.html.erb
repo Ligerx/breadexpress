@@ -38,7 +38,7 @@
                       <small><%= pluralize(oitem.quantity*oitem.item.units_per_item, 'unit') +' total' %></small>
                     </div>
                     <div class="small-2 columns">
-                      <%= f.input "#{oitem.id}", as: :boolean, inline_label: 'Shipped?' %>
+                      <%= f.input "#{oitem.id}", as: :boolean, inline_label: 'Shipped?', input_html: { checked: (oitem.shipped_on ? true : false)} %>
                     </div>
 
                   </div>
