@@ -51,6 +51,10 @@
   margin-bottom: 20px;
 }
 
+.extra-top-margin {
+  margin-top: 70px !important;
+}
+
 .side-nav {
   padding-top: 5px;
 
@@ -87,4 +91,39 @@ table {
 
 .pagination {
   margin-bottom: 25px;
+}
+
+.big-item-image {
+  padding-top: 18px;
+}
+
+.cart-item-margin {
+  margin-bottom: 20px !important;
+}
+
+
+
+
+.banner {
+  position: relative;
+  width: 100%;
+
+  img {
+    height: auto;
+    width: 100%;
+  }
+
+  h1 {
+    position: absolute;
+    top: 40%;
+    left: 100px;
+    width: 100%;
+
+    color: #FDFDFD;
+
+    small {
+      color: #EEE;
+      font-size: 35%;
+    }
+  }
 }

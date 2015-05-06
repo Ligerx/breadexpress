@@ -1,5 +1,11 @@
-<%= simple_form_for :login, { url: login_path } do |f| %>
-  <%= f.input :username %>
-  <%= f.input :password %>
-  <%= f.button :submit, "Log In" %>
-<% end %>
+<div class="small-8 columns small-centered">
+  <%= simple_form_for :login, { url: login_path } do |f| %>
+    <fieldset>
+    <legend>Log In</legend>
+    <%= f.input :username %>
+    <%= f.input :password %>
+    <%= f.button :submit, "Log In", class: 'expand' %>
+      
+    </fieldset>
+  <% end %>
+</div>

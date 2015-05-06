@@ -7,6 +7,7 @@ class Ability
     
 
     can :read, Item
+    can :create, Customer
 
     if user.role? :admin
       can :manage, :all
@@ -16,6 +17,7 @@ class Ability
 
     elsif user.role? :shipper
       can :shipper, User
+      can :update_order_items, User
 
     elsif user.role? :customer
       can :manage, Address do |a|

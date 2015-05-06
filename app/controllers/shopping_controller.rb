@@ -9,6 +9,10 @@ class ShoppingController < ApplicationController
     cart_item = CartItem.new(params[:cart_item])
 
     if cart_item.valid?
+      if Item.find(cart_item.item).current_price.nil?
+        redirect_to :back, alert: "Item should have a price to be added to cart. Sorry for the inconvenience." and return
+      end
+
       add_item_to_cart(cart_item.item, cart_item.quantity)
       redirect_to cart_path, notice: 'Successfully added to cart'
     else

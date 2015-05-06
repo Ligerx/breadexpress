@@ -9,9 +9,7 @@
 
 
     <%= customer_form.simple_fields_for :user do |user_form| %>
-      <% if logged_in? && current_user.role?(:admin) %>
-        <%= user_form.input :username %>
-      <% end %>
+      <%= user_form.input :username %>
 
       <%= user_form.input :password %>
       <%= user_form.input :password_confirmation %>
@@ -22,7 +20,7 @@
     <% end %>
 
     <div class="form-actions">
-      <%= customer_form.submit nil, :class => 'button small' %>
+      <%= customer_form.submit nil, :class => 'button small', value: 'Create Account' %>
 
       <% path = (logged_in? && current_user.role?(:admin)) ? customers_path : root_path %>
       <%= link_to 'Cancel', path, :class => 'button small secondary' %>

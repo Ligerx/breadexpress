@@ -1,6 +1,6 @@
 <% unless session[:cart].empty? %>
  
-  <div class="panel">
+  <div class="panel extra_margin">
     <h3 class="text-center"><strong>Summary</strong></h3>
 
     <div class="row">
@@ -31,7 +31,7 @@
     </div>
 
 
-    <%= button_to "Checkout", new_order_path, class: 'button expand', method: :get %>
+    <%= button_to "Checkout", new_order_path, class: 'button expand extra_margin', method: :get %>
 
   </div>
 

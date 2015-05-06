@@ -16,12 +16,12 @@
   </div>
 
   <div class="small-3 columns">
-    <p>
+    <h5><small>
       <%= order.address.street_1 %> <br/>
       <%= raw("#{order.address.street_2}<br/>") if order.address.street_2 %>
       <%= order.address.city %> <br/>
       <%= "#{order.address.state}, #{order.address.zip}" %>
-    </p>
+    </small></h5>
   </div>
 
 </div>

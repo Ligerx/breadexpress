@@ -1,15 +1,20 @@
-<% is_admin = current_user.role?(:admin) %>
-<% customer = addresses.first.customer %>
+<% if addresses.empty? %>
+  <h4>No Addresses</h4>
+  <%= link_to "Add Address", new_address_path, class: 'button tiny' %>
+<% else %>
+  <% is_admin = current_user.role?(:admin) %>
+  <% customer = addresses.first.customer %>
 
-<h1><%= is_admin ? link_to("#{customer.proper_name}'s", customer) : 'Your' %> Address Book</h1>
-<%= link_to "Add Address", new_address_path, class: 'button tiny' %>
+  <h1><%= is_admin ? link_to("#{customer.proper_name}'s", customer) : 'Your' %> Address Book</h1>
+  <%= link_to "Add Address", new_address_path, class: 'button tiny' %>
 
 
-<%= render partial: 'address_rows', locals: {addresses: addresses.active} %>
+  <%= render partial: 'address_rows', locals: {addresses: addresses.active} %>
 
-<% if addresses.inactive.size > 0 %>
-  <h5>Inactive Addresses</h5>
-  <%= render partial: 'address_rows', locals: {addresses: addresses.inactive} %>
+  <% if addresses.inactive.size > 0 %>
+    <h5>Inactive Addresses</h5>
+    <%= render partial: 'address_rows', locals: {addresses: addresses.inactive} %>
+  <% end %>
+
+  <%= link_to "Add Address", new_address_path, class: 'button tiny' %>
 <% end %>
-
-<%= link_to "Add Address", new_address_path, class: 'button tiny' %>

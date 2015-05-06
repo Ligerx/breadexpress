@@ -1,5 +1,5 @@
 <div class="row">  
-  <div class="small-6 columns">
+  <div class="small-6 columns big-item-image">
     <%= render partial: 'partials/item_image', locals: {item: @item} %>
   </div>
   <div class="small-6 columns">
@@ -7,7 +7,7 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row extra-top-margin">
   <% if current_user && current_user.role?(:admin) %>
     <%= render partial: 'item_price_history', locals: { item: @item, new_price: @new_price } %>
   <% else %>

@@ -52,8 +52,11 @@
     </div>
 
     <div class="small-4 columns">
-      <h4 class="extra_margin"><strong>Payment Information</strong></h4>
-      <%= render partial: 'shopping/form', locals: {f: f} %>
+      <div class="panel">
+        <h4 class="extra_margin"><strong>Payment Information</strong></h4>
+          
+        <%= render partial: 'shopping/form', locals: {f: f} %>
+      </div>
     </div>
   </div>
 

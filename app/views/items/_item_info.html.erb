@@ -2,7 +2,7 @@
 
 <h1><b><%= item.name %></b></h1>
 <p>
-  <strong>Category: </strong><%= item.category %> <br/>
+  <strong>Category: </strong><%= item.category.capitalize %> <br/>
   <strong>Price: </strong> <%= price %> <br/>
   <strong>Total weight: </strong> <%= item.weight %> lbs. <br/>
   <%= pluralize(item.units_per_item, 'unit') %> per item
@@ -17,7 +17,7 @@
       method: 'post' do |f| %>
     <%= f.input :item, as: :hidden, input_html: { value: item.id } %>
     <%= f.input :quantity %>
-    <%= f.button :submit, value: 'Add to Cart' %>
+    <%= f.button :submit, value: 'Add to Cart', class: 'expand' %>
   <% end %>
 
 <% end %>

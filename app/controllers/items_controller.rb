@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
     @items = @items.for_category(params[:type]) if params[:type]
 
     # REJECT ITEMS WITH NO PRICE
-    @items = @items.to_a.delete_if {|i| i.current_price.nil?} if (logged_in? && current_user.role?(:admin))
+    @items = @items.to_a.delete_if {|i| i.current_price.nil?} unless (logged_in? && current_user.role?(:admin))
 
     @type = params[:type]
   end
