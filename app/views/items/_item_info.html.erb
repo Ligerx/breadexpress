@@ -10,7 +10,7 @@
 </p>
 
 
-<% if !logged_in? || current_user.role?(:admin) || current_user.role?(:customer) %>
+<% if logged_in? && ( current_user.role?(:admin) || current_user.role?(:customer) ) %>
   
   <%= simple_form_for CartItem.new, 
       url: add_item_to_cart_url,
