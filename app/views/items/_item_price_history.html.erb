@@ -1,25 +1,32 @@
-<div class="small-10 columns small-centered">
-  <div class="small-4 columns">
+<div class="small-12 columns">
+  <div class="small-4 columns small-offset-2">
     <h3>Price History</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>Price</th>
-          <th>Start Date</th>
-          <th>End Date</th>
-        </tr>
-      </thead>
 
-      <tbody>
-        <% item.item_prices.chronological.order(created_at: :desc).each do |price| %>
+    <% if item.item_prices.chronological.order(created_at: :desc).empty? %>
+      <h4>No Prices</h4>
+    <% else %>
+      <table>
+        <thead>
           <tr>
-            <td><%= number_to_currency price.price %></td>
-            <td><%= print_date price.start_date %></td>
-            <td><%= print_date price.end_date %></td>
+            <th>Price</th>
+            <th>Start Date</th>
+            <th>End Date</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          <% item.item_prices.chronological.order(created_at: :desc).each do |price| %>
+            <tr>
+              <td><%= number_to_currency price.price %></td>
+              <td><%= print_date price.start_date %></td>
+              <td><%= print_date price.end_date %></td>
+            </tr>
+          <% end %>
+        </tbody>
+
+      </table>
+    <% end %>
+
   </div>
 
 

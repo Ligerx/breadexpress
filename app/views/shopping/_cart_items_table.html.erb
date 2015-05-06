@@ -2,12 +2,14 @@
   <div class="small-8 columns">
     <h1>Shopping Cart</h1>
 
-    <% unless session[:cart].empty? %>
+    <% if session[:cart].empty? %>
+      <h4>Please add items to your cart to check out</h4>
+    <% else %>
       <%= render partial: 'cart_items', locals: {f: f} %>
-    <% end %>
 
-    <div class="row">
-      <div class="right"><%= f.button :submit, "Update Cart", class: 'small move_left' %></div>
-    </div>
+      <div class="row">
+        <div class="right"><%= f.button :submit, "Update Cart", class: 'small move_left' %></div>
+      </div>
+    <% end %>
   </div>
 <% end %>

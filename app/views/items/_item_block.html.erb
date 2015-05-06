@@ -4,7 +4,10 @@
 <% name_size  ||= 4 %>
 <% price_size ||= 6 %>
 
+<% price = item.current_price %>
+<% price_text = ( price.nil? ? 'No price yet' : number_to_currency(price) ) %>
+
 <%= link_to '', item_path(item), class: 'clickable_div' %>
 <%= render partial: 'partials/item_image', locals: { item: item } %>
 <h<%= name_size %>><%= item.name %></h<%= name_size %>>
-<h<%= price_size %>><%= number_to_currency(item.item_prices.current.first.price) %></h<%= price_size %>>
+<h<%= price_size %>><%= %></h<%= price_size %>>
