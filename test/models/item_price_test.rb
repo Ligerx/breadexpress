@@ -70,4 +70,3 @@ class ItemPriceTest < ActiveSupport::TestCase
 
   end
 end
-

@@ -107,4 +107,3 @@ class AddressTest < ActiveSupport::TestCase
     
   end
 end
-

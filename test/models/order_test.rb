@@ -199,4 +199,3 @@ class OrderTest < ActiveSupport::TestCase
 
   end
 end
-
