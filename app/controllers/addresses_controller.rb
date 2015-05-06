@@ -16,9 +16,10 @@ class AddressesController < ApplicationController
       @addresses = current_user.customer.addresses.by_recipient
     elsif current_user.role? :admin
       if params[:admin_request]
-        @addresses = Customer.find(params[:admin_request]).addresses.by_recipient
+        @customer = Customer.find(params[:admin_request])
+        @addresses = @customer.addresses.by_recipient
       else
-        @addresses = Address.by_recipient
+        @addresses = Address.by_recipient.paginate(:page => params[:page]).per_page(10)
       end
     end
   end
@@ -53,7 +54,7 @@ class AddressesController < ApplicationController
 
   def destroy
     @address.destroy
-    redirect_to addresss_url, notice: "The address was removed from the system."
+    redirect_to addresses_url, notice: "The address was removed from the system."
   end
 
 

@@ -1,3 +1,6 @@
-<%= render partial: 'partials/dashboard/customer_admin_dashboard', locals: {partial_name: 'customer_addresses',
-                                                                            addresses: @addresses
+<% partial = ( (current_user.role?(:customer) || @customer) ? 'customer_addresses' : 'address_list' ) %>
+
+<%= render partial: 'partials/dashboard/customer_admin_dashboard', locals: {partial_name: partial,
+                                                                            addresses: @addresses,
+                                                                            customer: (@customer ||= nil)
                                                                            } %>
