@@ -1,5 +1,7 @@
+<% is_admin = current_user.role?(:admin) %>
+<% customer = addresses.first.customer %>
 
-<h1>Address Book</h1>
+<h1><%= is_admin ? link_to("#{customer.proper_name}'s", customer) : 'Your' %> Address Book</h1>
 <%= link_to "Add Address", new_address_path, class: 'button tiny' %>
 
 

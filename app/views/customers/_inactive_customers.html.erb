@@ -1,8 +1,9 @@
-<% unless @inactive_customers.empty? || !logged_in? %>
+<%= "!inactive_customers.empty? #{!inactive_customers.empty?} logged_in? #{logged_in?}" %>
+<% if !inactive_customers.empty? || !logged_in? %>
   <div class="panel clearfix">
     <h3>Inactive Customers</h3>
     <ul>
-      <% @inactive_customers.each do |customer| %>
+      <% inactive_customers.each do |customer| %>
         <li><%= link_to customer.name, customer_path(customer) %></li>
       <% end %>
     </ul>

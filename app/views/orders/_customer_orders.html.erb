@@ -1,4 +1,7 @@
-<h1>Your Orders</h1>
+<% is_admin = current_user.role?(:admin) %>
+<% customer = orders.first.customer %>
+
+<h1><%= is_admin ? link_to("#{customer.proper_name}'s", customer) : 'Your' %> Orders</h1>
 
 <% orders.each do |o| %>
   <div class="panel <%= 'callout' unless all_shipped?(o) %>">
@@ -9,3 +12,4 @@
 
   </div>
 <% end %>
+<%= will_paginate orders, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  

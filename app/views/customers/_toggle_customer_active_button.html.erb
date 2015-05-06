@@ -1,0 +1,10 @@
+<%# Must pass a customer %>
+<%# Pass in a size (button size e.g. small, tiny) %>
+<% size ||= "small" %>
+
+<% if current_user.role?(:admin) %>
+  <% text = ( customer.active ? "Deactivate" : "Activate" ) %>
+  <% bool = ( customer.active ? false : true ) %>
+
+  <%= link_to text, customer_path(customer: {active: bool}, id: customer.id), method: :patch, class: "button secondary #{size}" %>
+<% end %>

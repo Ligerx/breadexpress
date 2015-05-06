@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="small-2 columns">
+  <div class="small-2 columns side-nav-parent">
     <% if logged_in? && current_user.role?(:customer) %>
       <%= render partial: 'customers/customer_nav', locals: {customer: current_user.customer} %>
     <% elsif logged_in? && current_user.role?(:admin) %>
@@ -10,8 +10,10 @@
   <div class="small-10 columns">
     <%= render partial: "#{partial_name}", locals: {user: current_user,
                                                     customer: (defined?(customer) ? customer : (current_user.customer ? current_user.customer : nil)),
+                                                    customers: (defined?(customers) ? customers : nil),
                                                     addresses: (defined?(addresses) ? addresses : nil),
-                                                    orders: (defined?(orders) ? orders : nil)
+                                                    orders: (defined?(orders) ? orders : nil),
+                                                    order: (defined?(order) ? order : nil)
                                                    } %>
   </div>
 </div>

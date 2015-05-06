@@ -4,8 +4,8 @@
 
     <%= customer_form.input :first_name, input_html: {class: "avg"} %>
     <%= customer_form.input :last_name, input_html: {class: "avg"} %>
-    <%= customer_form.input :phone, input_html: {class: "avg"} %>
-    <%= customer_form.input :email, input_html: {class: "avg"} %>
+    <%= customer_form.input :phone, input_html: {class: "avg"}, required: true %>
+    <%= customer_form.input :email, input_html: {class: "avg"}, required: true %>
 
 
     <%= customer_form.simple_fields_for :user do |user_form| %>
@@ -22,8 +22,10 @@
     <% end %>
 
     <div class="form-actions">
-      <%= customer_form.submit nil, :class => 'button radius' %>
-      <%= link_to 'Cancel', customers_path, :class => 'button alert radius' %>
+      <%= customer_form.submit nil, :class => 'button small' %>
+
+      <% path = (logged_in? && current_user.role?(:admin)) ? customers_path : root_path %>
+      <%= link_to 'Cancel', path, :class => 'button small secondary' %>
     </div>
   </fieldset>
 <% end %>

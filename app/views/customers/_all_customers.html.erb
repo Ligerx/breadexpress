@@ -1,0 +1,12 @@
+<%# render partial: 'active_customers', locals: {active_customers: customers.active} %>
+<%# render partial: 'inactive_customers', locals: {inactive_customers: customers.inactive}%>
+
+<h2>Customers</h2>
+
+<%= link_to "Create Customer", new_customer_path, class: 'button small' %>
+
+<%= render partial: 'customer_table', locals: {customers: customers.active, status: "active"} %>
+<%= render partial: 'customer_table', locals: {customers: customers.inactive, status: "inactive"} %>
+
+<%= link_to "Create Customer", new_customer_path, class: 'button small' %>
+

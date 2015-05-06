@@ -9,21 +9,24 @@ class OrdersController < ApplicationController
   
   def index
     if logged_in? && current_user.role?(:admin)
-      # @pending_orders = Order.not_shipped.chronological.paginate(:page => params[:page]).per_page(5)
-      # @all_orders = Order.chronological.paginate(:page => params[:page]).per_page(5)
+      if params[:admin_request]
+        @orders = Customer.find(params[:admin_request]).orders.chronological.order(updated_at: :desc).paginate(:page => params[:page]).per_page(4)
+      else
+        # render some other page
+        @orders = Order.chronological.paginate(:page => params[:page]).per_page(10)
+        render 'all_orders_index'
+      end
     elsif logged_in? && current_user.role?(:customer)
-      # @pending_orders = current_user.customer.orders.not_shipped.chronological.paginate(:page => params[:page]).per_page(5)
-      # @all_orders = current_user.customer.orders.chronological.paginate(:page => params[:page]).per_page(5)
-      @orders = current_user.customer.orders.chronological.order(updated_at: :desc).paginate(:page => params[:page]).per_page(10)
+      @orders = current_user.customer.orders.chronological.order(updated_at: :desc).paginate(:page => params[:page]).per_page(4)
     end 
   end
 
   def show
-    @order_items = @order.order_items.to_a
+    # @order_items = @order.order_items.to_a
     if current_user.role?(:customer)
-      @previous_orders = current_user.customer.orders.chronological.to_a
+      # @previous_orders = current_user.customer.orders.chronological.to_a
     else
-      @previous_orders = @order.customer.orders.chronological.to_a
+      # @previous_orders = @order.customer.orders.chronological.to_a
     end
   end
 
@@ -60,7 +63,7 @@ puts '-------------- AT CREATE, BEFORE save-each_item_in_cart'
   end
 
   def destroy
-    @order.destroy
+    @order.destroy!
     redirect_to orders_url, notice: "This order was removed from the system."
   end
 

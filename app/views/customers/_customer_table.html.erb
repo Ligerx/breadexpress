@@ -1,0 +1,28 @@
+<% if customers.empty? %>
+  <h4>No <%= status %> customers at this time.</h4>
+<% else %>
+  <h4><%= status.capitalize %> Customers</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>User Account</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% customers.each do |customer| %>
+        <tr>
+          <td><%= render partial: 'toggle_customer_active_button', locals: {customer: customer, size: 'tiny'} %></td>
+          <td><%= link_to customer.name, customer_path(customer) %></td>
+          <td><%= number_to_phone customer.phone %></td>
+          <td><%= mail_to customer.email, customer.email, encode: "javascript"  %></td>
+          <td><%= link_to customer.user.username, user_path(customer.user) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<%= will_paginate customers, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+<% end %>

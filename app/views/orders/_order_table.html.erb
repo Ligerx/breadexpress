@@ -1,0 +1,31 @@
+<h2>All Orders</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th width="85"><small>Only delete unshipped</small></th>
+      <th>Date</th>
+      <th>Customer</th>
+      <th>Recipient</th>
+      <th>Items</th>
+      <th>Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% orders.each do |order| %>
+      <tr>
+        <td><%= button_to "Delete", order, method: 'delete', class: 'button tiny alert', disabled: !order.is_editable? %></td>
+        <td><%= link_to order.date.strftime('%m/%d/%y'), order_path(order) %></td>
+        <td><%= link_to order.customer.proper_name, order.customer %></td>
+        <td><%= link_to order.address.recipient, address_path(order.address) %></td>
+        <td>
+          <% order.order_items.each do |oi| %>
+            <%= link_to "#{pluralize(oi.quantity, oi.item.name)}", oi.item %><br />
+          <% end %>
+        </td>
+        <td><%= number_to_currency order.grand_total %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate orders, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  

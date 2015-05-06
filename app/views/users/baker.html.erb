@@ -1,5 +1,7 @@
+<h2>Baking List</h2>
+<p><%= link_to "Return to dashboard", dashboard_path if current_user.role?(:admin) %></p>
+
 <div class="row">
-  <h2>Baking List</h2>
 
   <% categories = Item::CATEGORIES %>
   <% categories.each do |array| %>

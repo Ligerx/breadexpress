@@ -15,7 +15,11 @@ class AddressesController < ApplicationController
     if current_user.role? :customer
       @addresses = current_user.customer.addresses.by_recipient
     elsif current_user.role? :admin
-      @addresses = Address.by_customer.by_recipient.paginate(page: params[:page]).per_page(10)
+      if params[:admin_request]
+        @addresses = Customer.find(params[:admin_request]).addresses.by_recipient
+      else
+        @addresses = Address.by_recipient
+      end
     end
   end
 

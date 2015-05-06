@@ -1,29 +1,36 @@
 <h3>Order Details</h3>
 
 <p>
-  <b>Date</b>: <%= @order.date.strftime('%B %e, %Y') %>
+  <b>Date</b>: <%= order.date.strftime('%B %e, %Y') %>
 </p>
 
 <p>
-  <b>Recipient</b>: <%= link_to @order.address.recipient, address_path(@order.address) %>
+  <b>Customer</b>: <%= link_to order.customer.proper_name, order.customer %>
 </p>
 
 <p>
-  <b>Total Weight</b>: <%= @order.total_weight.round(2) %>
+  <b>Recipient</b>: <%= link_to order.address.recipient, address_path(order.address) %>
 </p>
 
 <p>
-  <b>Shipping Costs</b>: <%= number_to_currency @order.shipping_costs %>
+  <b>Total Weight</b>: <%= order.total_weight.round(2) %>
 </p>
 
 <p>
-  <b>Total Cost</b>: <%= number_to_currency @order.grand_total %>
+  <b>Shipping Costs</b>: <%= number_to_currency order.shipping_costs %>
 </p>
 
 <p>
-  <%= render partial: "partials/order_item_list", locals: {order_items: @order_items, date: @order.date} %>
+  <b>Total Cost</b>: <%= number_to_currency order.grand_total %>
 </p>
 
 <p>
-  <em>Thanks for being a Bread Express customer since <%= @order.customer.created_at.year %>.</em>
+  <%= render partial: "partials/order_item_list", locals: {order_items: order.order_items, date: order.date} %>
 </p>
+
+<p>
+  <em>Thanks for being a Bread Express customer since <%= order.customer.created_at.year %>.</em>
+</p>
+
+<% text = ( !order.is_editable? ? "Can't delete shipped order" : "Delete Order" ) %>
+<%= button_to text, order, method: 'delete', class: 'button alert', disabled: !order.is_editable? %>

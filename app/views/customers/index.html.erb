@@ -1,4 +1,9 @@
-<%= render partial: "partials/index_structure", locals: {model_name: "customer", 
+<%# render partial: "partials/index_structure", locals: {model_name: "customer", 
                                                          primary: "active_customers", 
                                                          secondary: nil,
                                                          sidebar: "inactive_customers"} %>
+
+<%= render partial: 'partials/dashboard/customer_admin_dashboard',
+            locals: {partial_name: 'all_customers',
+                     customers: @customers
+                    } %>
