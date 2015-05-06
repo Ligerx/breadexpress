@@ -6,6 +6,7 @@
   <strong>Price: </strong> <%= price %> <br/>
   <strong>Total weight: </strong> <%= item.weight %> lbs. <br/>
   <%= pluralize(item.units_per_item, 'unit') %> per item
+  <%= raw("<br/><strong>Active: </strong> #{item.active}") %>
 </p>
 
 
