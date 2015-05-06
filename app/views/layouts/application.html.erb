@@ -22,11 +22,14 @@
         <%= yield %>
       </div>
     </div>
-    <footer>
-      <div class="small-12 columns" id="footer">
-        <%= render partial: 'partials/footer' %>
-      </div>
-    </footer> 
+
+    <div class="row">
+      <footer>
+        <div class="small-12 columns" id="footer">
+          <%= render partial: 'partials/footer' %>
+        </div>
+      </footer> 
+    </div>
     <%= javascript_include_tag "application" %>
   </body>
 </html>
