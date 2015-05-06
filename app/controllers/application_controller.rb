@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
     redirect_to home_path, error: "Record not found in the system."
   end
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, alert: 'You are not authorized to take this action'
+  end
+
 
   private
   def current_user

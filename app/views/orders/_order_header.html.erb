@@ -5,7 +5,7 @@
   </div>
 
   <div class="small-3 columns">
-    <p><strong>Order placed</strong> <br/><%= print_date(order.date) %></p>
+    <p><strong>Order placed</strong> <br/><%= link_to print_date(order.date), order %></p>
   </div>
 
   <div class="small-3 columns">

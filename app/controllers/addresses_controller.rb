@@ -1,7 +1,7 @@
 class AddressesController < ApplicationController
   before_action :check_login
   before_action :set_address, only: [:show, :edit, :update, :destroy]
-  # authorize_resource
+  authorize_resource
   
   def index
     # if current_user.role? :customer
@@ -22,9 +22,6 @@ class AddressesController < ApplicationController
         @addresses = Address.by_recipient.paginate(:page => params[:page]).per_page(10)
       end
     end
-  end
-
-  def show
   end
 
   def new

@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   include BreadExpressHelpers::Cart
   include BreadExpressHelpers::Baking
 
+  authorize_resource
+
   helper_method :create_baking_list_for
 
   def index

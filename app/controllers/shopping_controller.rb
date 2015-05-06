@@ -1,7 +1,7 @@
 class ShoppingController < ApplicationController
   include BreadExpressHelpers::Cart
   include BreadExpressHelpers::Shipping
-
+  
   def cart
   end
 

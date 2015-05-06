@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  authorize_resource
+
   def index
     # Put inactive items last?
     @items = Item.order(:active).alphabetical

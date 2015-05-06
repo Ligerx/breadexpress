@@ -17,7 +17,11 @@ class HomeController < ApplicationController
 
 
   def dashboard
-    
+    if !current_user.role?(:admin)
+      redirect_to root_path
+    else
+      redirect_to users_path
+    end
   end
 
 
