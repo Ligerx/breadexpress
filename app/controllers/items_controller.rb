@@ -27,9 +27,21 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @item = Item.find(params[:id])
+    # if @item.save
+    #   redirect_to @item, notice: 'Item successfully updated'
+    # else
+    #   render 'edit'
+    # end
   end
 
   def create
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to @item, notice: 'Successfully created a new item!'
+    else
+      render 'new'
+    end
   end
 
   def update

@@ -1,6 +1,8 @@
+<% price = ( item.current_price ? number_to_currency(item.item_prices.current.first.price) : 'No price currently set' ) %>
+
 <h1><b><%= item.name %></b></h1>
 <p><%= item.category %><p>
-<p><%= number_to_currency(item.item_prices.current.first.price) %></p>
+<p><%= price %></p>
 <p><%= pluralize(item.units_per_item, 'unit') %> per item</p>
 
 

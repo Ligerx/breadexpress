@@ -31,7 +31,19 @@
       <%= f.input :item_id, as: :hidden, input_html: { value: item.id } %>
       <%= f.input :start_date, as: :hidden, input_html: { value: Date.current } %>
       <%= f.input :price, label: 'Item Price', input_html: { placeholder: '$0.00'} %>
-      <%= f.button :submit, value: 'Change item price' %>
+      <%= f.button :submit, value: 'Change item price', class: 'expand' %>
     <% end %>
+
+
+    <%= link_to(edit_item_path(item), class: 'button small expand') do %>
+      &nbsp;Edit&nbsp;
+    <% end %>
+    <% text = ( item.active ? "Deactivate" : "Activate" ) %>
+    <% bool = ( item.active ? false : true ) %>
+
+    <%= link_to text, item_path(item: {active: bool}, id: item.id), method: :patch, class: "button secondary small expand" %>
+    <%= button_to "Delete", item, method: 'delete', class: 'button small alert expand', disabled: !item.order_items.shipped.empty? %>
   </div>
+
+
 </div>
