@@ -20,25 +20,28 @@
           </div>
         </div>
 
-
           <div class="small-9 columns">
             <div class="panel add-space-between-shipping">
               
               <% order.order_items.unshipped.each do |oitem| %>
-                <div class="row">
-                  <div class="small-5 columns">
-                    <strong><%= oitem.item.name %></strong>
+                <%# link_to '#', class: 'clickable-row' do %>
+                  <div class="row shipper-row">
+
+                    <div class="small-5 columns">
+                      <strong><%= oitem.item.name %></strong>
+                    </div>
+                    <div class="small-2 columns">
+                      <%= pluralize(oitem.quantity, 'order') %>
+                    </div>
+                    <div class="small-3 columns">
+                      <small><%= pluralize(oitem.quantity*oitem.item.units_per_item, 'unit') +' total' %></small>
+                    </div>
+                    <div class="small-2 columns">
+                      <%= f.input "#{oitem.id}", as: :boolean, inline_label: 'Shipped?' %>
+                    </div>
+
                   </div>
-                  <div class="small-2 columns">
-                    <%= pluralize(oitem.quantity, 'order') %>
-                  </div>
-                  <div class="small-3 columns">
-                    <small><%= pluralize(oitem.quantity*oitem.item.units_per_item, 'unit') +' total' %></small>
-                  </div>
-                  <div class="small-2 columns">
-                    <%= f.input "#{oitem.id}", as: :boolean, inline_label: 'Shipped?' %>
-                  </div>
-                </div>
+                <%# end %>
               <% end %>
 
             </div>

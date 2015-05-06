@@ -18,3 +18,28 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+
+
+
+
+
+//// Shipper page js
+
+$('.shipper-row label').click(function(event) {
+  //Disable the native checkbox click
+  event.stopPropagation();
+});
+
+$('.shipper-row').click(function(event) {
+  //only get the first element (that was clicked on)
+  event.stopPropagation();
+  var checkbox = $(this).find('input');
+
+  if (checkbox.is(':checked')) {
+    checkbox.prop('checked', false);
+  }
+  else {
+    checkbox.prop('checked', true);
+  }
+});

@@ -59,7 +59,14 @@ table {
   width: 100%;
 }
 
-.add-space-between-shipping .row:not(:first-child) {
+
+// .add-space-between-shipping > .clickable-row:not(:first-child) > .row {
+// .add-space-between-shipping .row:not(:first-child) {
+.shipper-row:not(:first-child) {
   border-top: 1px solid #DADADA;
   padding-top: 15px;
+}
+
+.shipper-row {
+  cursor: pointer;
 }
