@@ -8,6 +8,9 @@ class ItemsController < ApplicationController
     # Filter by category if given a typ
     @items = @items.for_category(params[:type]) if params[:type]
 
+    # REJECT ITEMS WITH NO PRICE
+    @items = @items.to_a.delete_if {|i| i.current_price.nil?} if (logged_in? && current_user.role?(:admin))
+
     @type = params[:type]
   end
 
@@ -38,7 +41,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to @item, notice: 'Successfully created a new item!'
+      redirect_to @item, notice: "#{@item.name.capitalize} was added to the system"
     else
       render 'new'
     end

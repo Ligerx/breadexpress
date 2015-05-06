@@ -1,7 +1,7 @@
 <%# Please wrap this with a div that determines the block size %>
 <%# Optionally pass a size for item name and item price (has default values) %>
 
-<% name_size  ||= 4 %>
+<% name_size  ||= 5 %>
 <% price_size ||= 6 %>
 
 <% price = item.current_price %>
@@ -9,5 +9,9 @@
 
 <%= link_to '', item_path(item), class: 'clickable_div' %>
 <%= render partial: 'partials/item_image', locals: { item: item } %>
-<h<%= name_size %>><%= item.name %></h<%= name_size %>>
-<h<%= price_size %>><%= %></h<%= price_size %>>
+<h<%= name_size %>><small><%= 'Name: ' if details %></small><strong><%= item.name %></strong></h<%= name_size %>>
+
+<% if details %>
+  <h<%= price_size %>><small>Price: </small><%=  number_to_currency(item.current_price) %></h<%= price_size %>>
+  <h<%= price_size %>><small>Units: </small><%=  pluralize(item.units_per_item, (item.category == 'bread' ? 'loaf' : item.category)) %></h<%= price_size %>>
+<% end %>

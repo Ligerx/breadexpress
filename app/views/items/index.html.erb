@@ -1,14 +1,18 @@
-<h2><%= @type.nil? ? 'All Items' : @type.capitalize %></h2>
+<h2><%= @type.nil? ? 'All Available Items' : @type.capitalize %></h2>
 
-<div class="row">
-  <% @items.each_with_index do |item, index| %>
-    <% if index == @items.size - 1 %>
-      <div class="small-4 columns end">
-    <% else %>
-      <div class="small-4 columns">
+<% if @items.empty? %>
+  <h4>No active items at this time</h4>
+<% else %>
+  <div class="row">
+    <% @items.each_with_index do |item, index| %>
+      <% if index == @items.size - 1 %>
+        <div class="small-4 columns end">
+      <% else %>
+        <div class="small-4 columns">
+      <% end %>
+
+        <%= render partial: 'item_block', locals: { item: item, details: true } %>
+      </div>
     <% end %>
-
-      <%= render partial: 'item_block', locals: { item: item } %>
-    </div>
-  <% end %>
-</div>
+  </div>
+<% end %>

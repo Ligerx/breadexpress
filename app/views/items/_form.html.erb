@@ -6,7 +6,7 @@
     <%= f.input :name %>
     <%= f.input :description %>
     <%= f.input :picture %>
-    <%= f.input :category, collection: Item::CATEGORIES.map{|a| a[1]} %>
+    <%= f.input :category, collection: Item::CATEGORIES %>
     <%= f.input :units_per_item %>
     <%= f.input :weight %>
     <%= f.input :active %>

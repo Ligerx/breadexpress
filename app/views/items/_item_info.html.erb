@@ -1,9 +1,12 @@
 <% price = ( item.current_price ? number_to_currency(item.item_prices.current.first.price) : 'No price currently set' ) %>
 
 <h1><b><%= item.name %></b></h1>
-<p><%= item.category %><p>
-<p><%= price %></p>
-<p><%= pluralize(item.units_per_item, 'unit') %> per item</p>
+<p>
+  <strong>Category: </strong><%= item.category %> <br/>
+  <strong>Price: </strong> <%= price %> <br/>
+  <strong>Total weight: </strong> <%= item.weight %> lbs. <br/>
+  <%= pluralize(item.units_per_item, 'unit') %> per item
+</p>
 
 
 <% if !logged_in? || current_user.role?(:admin) || current_user.role?(:customer) %>
