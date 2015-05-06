@@ -5,9 +5,7 @@ class UsersController < ApplicationController
   helper_method :create_baking_list_for
 
   def index
-  end
-
-  def show
+    @users = User.all.paginate(:page => params[:page]).per_page(10)
   end
 
   def new
@@ -15,15 +13,25 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def create
+    @user = User.new(user_params)
+    if @user.save
+      redirect_to users_path, notice: "Successfully created user"
+    else
+      render 'new'
+    end
   end
 
   def update
-  end
-
-  def destroy
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to users_path, notice: "Successfully updated user"
+    else
+      render 'edit'
+    end
   end
 
 
@@ -62,4 +70,9 @@ class UsersController < ApplicationController
     redirect_to shipper_path
   end
 
+
+  private
+  def user_params
+    params.require(:user).permit(:id, :username, :password, :password_confirmation, :role, :active)
+  end
 end

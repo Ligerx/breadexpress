@@ -59,6 +59,12 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    @item = Item.find(params[:id])
+    if @item.destroy
+      redirect_to :back, notice: 'Successfully destroyed item'
+    else
+      redirect_to :back, notice: 'Item could not be destroyed'
+    end
   end
 
 

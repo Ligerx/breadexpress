@@ -1,0 +1,11 @@
+<h2>Users</h2>
+
+<%= link_to "Create User", new_user_path, class: 'button small' %>
+
+<%= render partial: 'user_table', locals: {users: users.employees.by_role.alphabetical, status: "employed"} %>
+<%= render partial: 'user_table', locals: {users: users.active.by_role.alphabetical, status: "active"} %>
+<%= render partial: 'user_table', locals: {users: users.inactive.by_role.alphabetical, status: "inactive"} %>
+
+
+
+<%= link_to "Create User", new_user_path, class: 'button small' %>

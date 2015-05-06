@@ -1,0 +1,44 @@
+<% if users.empty? %>
+  <p><em>There are no <%= status %> users at this time.</em></p>
+<% else %>
+<h4><%= status.capitalize %> Users</h4>
+<table class="table">
+  <thead>
+    <tr>
+      <th width="40"></th>
+      <th width="40"></th>
+      <th>Username</th>
+      <th>Role</th>
+      <th>Active?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.each do |user| %>
+      <tr>
+        <td>
+          <%= link_to(edit_user_path(user), class: 'button tiny radius warning') do %>
+            &nbsp;Edit&nbsp;
+          <% end %>
+        </td>
+        <td>
+          <% text = ( user.active ? "Deactivate" : "Activate" ) %>
+          <% bool = ( user.active ? false : true ) %>
+
+          <%= link_to text, user_path(user: {active: bool}, id: user.id), method: :patch, class: "button secondary tiny" %>
+        </td>
+
+        <td><%= user.username %></td>
+
+        <% if user.role?(:customer) %>
+         <td><%= link_to user.role.capitalize, user.customer %></td>  
+        <% else %>
+         <td><%= user.role.capitalize %></td>  
+        <% end %>  
+
+        <td><%= user.active %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate users, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+<% end %>
