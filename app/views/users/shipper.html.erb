@@ -23,7 +23,8 @@
           <div class="small-9 columns">
             <div class="panel add-space-between-shipping">
               
-              <% order.order_items.unshipped.each do |oitem| %>
+              <% order.order_items.each do |oitem| %>
+              <%# order.order_items.unshipped.each do |oitem| %>
                 <%# link_to '#', class: 'clickable-row' do %>
                   <div class="row shipper-row">
 
