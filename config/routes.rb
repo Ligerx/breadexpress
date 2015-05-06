@@ -27,6 +27,7 @@ BreadExpress::Application.routes.draw do
   get 'bread', to: 'items#index', defaults: { type: 'bread' }, as: :bread
   get 'muffins', to: 'items#index', defaults: { type: 'muffins' }, as: :muffins
   get 'pastries', to: 'items#index', defaults: { type: 'pastries' }, as: :pastries
+  get 'admin/items', to: 'items#admin_index', as: :admin_items
 
 
   # Extra address routes

@@ -23,6 +23,7 @@ class ItemsController < ApplicationController
   end
 
   def new
+    @item = Item.new
   end
 
   def edit
@@ -35,11 +36,22 @@ class ItemsController < ApplicationController
     if params[:item_price] #updating price
       update_item_price and return
     elsif params[:item]
-      "blah"
+      item = Item.find(params[:id])
+      if item.update(item_params)
+        redirect_to :back, notice: 'Updated item'
+      else
+        flash.now[:alert] = 'Problem updating item'
+        render 'edit'
+      end
     end
   end
 
   def destroy
+  end
+
+
+  def admin_index
+    @items = Item.alphabetical.order(:category).paginate(:page => params[:page]).per_page(4)
   end
 
 
@@ -60,6 +72,10 @@ class ItemsController < ApplicationController
   end
 
   def item_price_params
-    params.require(:item_price).permit(:item_id, :price, :start_date, :end_date)
+    params.require(:item_price).permit(:id, :item_id, :price, :start_date, :end_date)
+  end
+
+  def item_params
+    params.require(:item).permit(:name, :description, :picture, :category, :units_per_item, :weight, :active)
   end
 end

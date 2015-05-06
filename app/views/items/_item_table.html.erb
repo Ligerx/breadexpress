@@ -1,0 +1,46 @@
+<% items2 = ( status == 'inactive' ? items.inactive : items.active.for_category(status) ) %>
+
+<% if items2.empty? %>
+  <p><em>There are no <%= status %> items.</em></p>
+<% else %>
+<h4><%= status.capitalize %></h4>
+<table class="table">
+  <thead>
+    <tr>
+      <th><small>Can only delete unpurchased</small></th>
+      <th>Name</th>
+      <th>Current Price</th>
+      <th>Category</th>
+      <th>Description</th>
+      <th>Units</th>
+      <th>Weight</th>
+      <th>Active?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% items2.each do |item| %>
+      <tr>
+        <td>
+          <%= link_to(edit_item_path(item), class: 'button tiny expand') do %>
+            &nbsp;Edit&nbsp;
+          <% end %>
+          <% text = ( item.active ? "Deactivate" : "Activate" ) %>
+          <% bool = ( item.active ? false : true ) %>
+
+          <%= link_to text, item_path(item: {active: bool}, id: item.id), method: :patch, class: "button secondary tiny expand" %>
+        <%= button_to "Delete", item, method: 'delete', class: 'button tiny alert', disabled: !item.order_items.shipped.empty? %>
+        </td>
+
+        <td><%= link_to item.name, item %></td>
+        <td><%= item.current_price %></td>
+        <td><%= item.category.capitalize %></td>
+        <td><%= item.description %></td>      
+        <td><%= item.units_per_item %></td>      
+        <td><%= item.weight %></td>      
+        <td><%= item.active %></td>      
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate items, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+<% end %>

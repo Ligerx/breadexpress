@@ -1,0 +1,12 @@
+<h2>Items</h2>
+
+<%= link_to "Create Item", new_item_path, class: 'button small' %>
+
+<%= render partial: 'item_table', locals: {items: @items, status: "bread"} %>
+<%= render partial: 'item_table', locals: {items: @items, status: "muffins"} %>
+<%= render partial: 'item_table', locals: {items: @items, status: "pastries"} %>
+
+<%= render partial: 'item_table', locals: {items: @items, status: "inactive"} %>
+
+
+<%= link_to "Create Item", new_item_path, class: 'button small' %>
