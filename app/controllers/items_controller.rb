@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   def index
     # Put inactive items last?
-    @items = Item.order(:active)
+    @items = Item.order(:active).alphabetical
 
     # Only admins see inactive items
     @items = @items.active if (!logged_in? || (logged_in? && !current_user.role?(:admin)))
