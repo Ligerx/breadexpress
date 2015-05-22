@@ -10,4 +10,4 @@ This is my first web application project that summarizes everything I've learned
 ----------
 To set this up, clone this repository, run the `bundle install` command to ensure you have all the needed gems and then create the database with `rake db:migrate`.  If you want to populate the system with fictitious data, you can run the `rake db:populate` command.  The populate script will create 120 customers, over 600 orders, and a menu of 8 items.
 
-Some sample accounts are named 'mark', 'alex', 'baker', and 'shipper'. All account passwords are 'secret', but feel free to create your own!
+Some sample accounts are named `mark`, `alex`, `baker`, and `shipper`. All account passwords are `secret`, but feel free to create your own!
